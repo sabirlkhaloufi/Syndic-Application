@@ -59,17 +59,17 @@ const addAppartement = asyncHandler(async(req,res) => {
 // acces   : private
 const updateAppartement = asyncHandler(async(req,res) => {
     const {id} = req.params
-    const {title, image, ID, dateExperation, } = req.body
-    if(!title || !image || !ID || !dateExperation){
+    const {Numero, CnClient, Isrented, Etage, } = req.body
+    if(!Numero || !CnClient || !Isrented || !Etage){
         res.status(400)
         throw new Error('please add all fields')
     }else{
         try{
-            const certificat =  await Appartement.updateOne({_id:id},{
-                title,
-                image,
-                ID,
-                dateExperation
+            const appartement =  await Appartement.updateOne({_id:id},{
+                Numero,
+                CnClient,
+                Isrented,
+                Etage
             });
             res.send({message:"updated success"})
         } catch(error){

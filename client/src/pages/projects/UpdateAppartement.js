@@ -47,7 +47,7 @@ const onChange = (e)=>{
 
 
 const updateAppartement = async (data, options) => {
-      await api.post(`appartement/update/${id}`, formData).then((Response)=>{
+      await api.put(`appartement/update/${id}`, formData).then((Response)=>{
         console.log(Response);
       }).catch((Error)=>{
         console.log(Error);
