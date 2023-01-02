@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {getAllCertificats, updateCertificat, deleteCertificat, addCertificat, getOneCertificat} = require('../Controllers/CertificatController')
+const {getAllCertificats, updateCertificat, deleteCertificat, addCertificat, getOneCertificat} = require('../Controllers/AppartementController')
 
 router.get('/getAll',getAllCertificats)
 router.get('/getOne/:id',getOneCertificat)

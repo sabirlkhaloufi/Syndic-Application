@@ -1,25 +1,25 @@
 require("dotenv").config()
-const certificats = require("../Models/certificats")
+const Appartement = require("../Models/Appartement")
 const asyncHandler = require('express-async-handler');
 
 
 // method  : get
-// url     : api/Certificats/getAll
+// url     : api/Appartement/getAll
 // acces   : Puplic
-const getAllCertificats = asyncHandler(async(req,res) => {
-    certificats.find({}, function(err, certificats) {
-        res.send(certificats);  
+const getAllAppartement = asyncHandler(async(req,res) => {
+    Appartement.find({}, function(err, Appartement) {
+        res.send(Appartement);  
     });
 })
 
 
 // method  : get
-// url     : api/Certificats/getOne/:id
+// url     : api/Appartement/getOne/:id
 // acces   : Public
 const getOneCertificat = asyncHandler(async(req,res) => {
     const {id} = req.params;
     try{
-        const certificat =  await certificats.findOne({ _id:id});
+        const certificat =  await Appartement.findOne({ _id:id});
         res.send(certificat)
     } catch(error){
         res.status(400)
@@ -29,7 +29,7 @@ const getOneCertificat = asyncHandler(async(req,res) => {
 
 
 // method  : post
-// url     : api/Certificats/add
+// url     : api/Appartement/add
 // acces   : private
 const addCertificat = asyncHandler(async(req,res) => {
     
@@ -39,7 +39,7 @@ const addCertificat = asyncHandler(async(req,res) => {
         throw new Error('please add all fields')
     }else{
         try{
-            const certificat =  await certificats.create({
+            const certificat =  await Appartement.create({
                 title,
                 image,
                 ID,
@@ -55,7 +55,7 @@ const addCertificat = asyncHandler(async(req,res) => {
 
 
 // method  : put
-// url     : api/Certificats/update/:id
+// url     : api/Appartement/update/:id
 // acces   : private
 const updateCertificat = asyncHandler(async(req,res) => {
     const {id} = req.params
@@ -65,7 +65,7 @@ const updateCertificat = asyncHandler(async(req,res) => {
         throw new Error('please add all fields')
     }else{
         try{
-            const certificat =  await certificats.updateOne({_id:id},{
+            const certificat =  await Appartement.updateOne({_id:id},{
                 title,
                 image,
                 ID,
@@ -80,12 +80,12 @@ const updateCertificat = asyncHandler(async(req,res) => {
 })
 
 // method  : delete
-// url     : api/Certificats/delete/:id
+// url     : api/Appartement/delete/:id
 // acces   : private
 const deleteCertificat = asyncHandler(async(req,res) => {
     const {id} = req.params;
     try{
-        const certificat =  await certificats.findOneAndRemove({ _id:id});
+        const certificat =  await Appartement.findOneAndRemove({ _id:id});
         res.send({message:"deleted success"})
     } catch(error){
         res.status(400)
@@ -95,4 +95,4 @@ const deleteCertificat = asyncHandler(async(req,res) => {
 
 
 
-module.exports = {getAllCertificats, updateCertificat, deleteCertificat, addCertificat, getOneCertificat}
+module.exports = {getAllAppartement, updateCertificat, deleteCertificat, addCertificat, getOneCertificat}

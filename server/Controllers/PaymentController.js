@@ -1,25 +1,25 @@
 require("dotenv").config()
-const Experiences = require("../Models/Experiences")
+const Payment = require("../Models/Payment")
 const asyncHandler = require('express-async-handler');
 
 
 // method  : get
-// url     : api/experiences/getAll
+// url     : api/Payment/getAll
 // acces   : Puplic
-const getAllExperiences = asyncHandler(async(req,res) => {
-    Experiences.find({}, function(err, Experience) {
+const getAllPayment = asyncHandler(async(req,res) => {
+    Payment.find({}, function(err, Experience) {
         res.send(Experience);  
     });
 })
 
 
 // method  : get
-// url     : api/experiences/getOne/:id
+// url     : api/Payment/getOne/:id
 // acces   : Public
 const getOneExperience = asyncHandler(async(req,res) => {
     const {id} = req.params;
     try{
-        const experience =  await Experiences.findOne({ _id:id});
+        const experience =  await Payment.findOne({ _id:id});
         res.send(experience)
     } catch(error){
         res.status(400)
@@ -29,7 +29,7 @@ const getOneExperience = asyncHandler(async(req,res) => {
 
 
 // method  : post
-// url     : api/experiences/add
+// url     : api/Payment/add
 // acces   : private
 const addExperience = asyncHandler(async(req,res) => {
     const {title, entreprise, firstYear, endYear, type } = req.body
@@ -38,7 +38,7 @@ const addExperience = asyncHandler(async(req,res) => {
         throw new Error('please add all fields')
     }else{
         try{
-            const experience =  await Experiences.create({
+            const experience =  await Payment.create({
                 title,
                 entreprise,
                 firstYear,
@@ -55,7 +55,7 @@ const addExperience = asyncHandler(async(req,res) => {
 
 
 // method  : put
-// url     : api/experiences/update/:id
+// url     : api/Payment/update/:id
 // acces   : private
 const updateExperience = asyncHandler(async(req,res) => {
     const {id} = req.params
@@ -65,7 +65,7 @@ const updateExperience = asyncHandler(async(req,res) => {
         throw new Error('please add all fields')
     }else{
         try{
-            const experience =  await Experiences.updateOne({_id:id},{
+            const experience =  await Payment.updateOne({_id:id},{
                 title,
                 entreprise,
                 firstYear,
@@ -81,12 +81,12 @@ const updateExperience = asyncHandler(async(req,res) => {
 })
 
 // method  : delete
-// url     : api/experiences/delete/:id
+// url     : api/Payment/delete/:id
 // acces   : private
 const deleteExperience = asyncHandler(async(req,res) => {
     const {id} = req.params;
     try{
-        const experience =  await Experiences.findOneAndRemove({ _id:id});
+        const experience =  await Payment.findOneAndRemove({ _id:id});
         res.send({message:"deleted success"})
     } catch(error){
         res.status(400)
@@ -96,4 +96,4 @@ const deleteExperience = asyncHandler(async(req,res) => {
 
 
 
-module.exports = {getAllExperiences, updateExperience, deleteExperience, addExperience ,getOneExperience}
+module.exports = {getAllPayment, updateExperience, deleteExperience, addExperience ,getOneExperience}

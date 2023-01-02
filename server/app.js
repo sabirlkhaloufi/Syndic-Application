@@ -31,22 +31,16 @@ app.use(cors({ origin:['http://localhost:3000','http://localhost:3001'], credent
 
 
 // require routes in folder routes
-const ProjectRoute = require("./Routes/ProjectRoute")
 const AuthRoute = require("./Routes/AuthRoute")
-const FormationRoute = require("./Routes/FormationRoute")
-const ExperienceRoute = require("./Routes/ExperienceRoute")
-const FeedBackRoute = require("./Routes/FeedBackRoute")
-const CertificatRoute = require("./Routes/CertificatsRoute")
+// const Appartement = require("./Routes/AppartementRoute")
+// const Payment = require("./Routes/PaymentRoute")
 
 
 app.use(express.json())
 
-app.use("/api/projects",ProjectRoute)
 app.use("/api/auth",AuthRoute)
-app.use("/api/formations",FormationRoute)
-app.use("/api/experiences",ExperienceRoute)
-app.use("/api/feedbacks",FeedBackRoute)
-app.use("/api/certificats",CertificatRoute)
+// app.use("/api/appartement",Appartement)
+// app.use("/api/payment",Payment)
 
 app.use('*',routeError)
 

@@ -36,10 +36,13 @@ const Login =  asyncHandler(async(req,res) => {
 
 
 const createAdmin = async(req,res)=>{
-    
      //hash password bcriptJs
-    const passHash = await bcrypt.hash(process.env.PASSADMIN, 10)
-    const admin = await Admin.create({username: process.env.NAMEADMIN, password:passHash})
+    const getAdmin = await Admin.findOne({username: process.env.NAMEADMIN})
+    if (!getAdmin) {
+        const passHash = await bcrypt.hash(process.env.PASSADMIN, 10)
+        const admin = await Admin.create({username: process.env.NAMEADMIN, password:passHash})
+    }
+    
 }
 
 // method  : get

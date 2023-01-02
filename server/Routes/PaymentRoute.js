@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {getAllExperiences, updateExperience, deleteExperience, addExperience, getOneExperience} = require('../Controllers/ExperienceController')
+const {getAllExperiences, updateExperience, deleteExperience, addExperience, getOneExperience} = require('../Controllers/PaymentController')
 
 router.get('/getAll',getAllExperiences)
 router.get('/getone/:id',getOneExperience)

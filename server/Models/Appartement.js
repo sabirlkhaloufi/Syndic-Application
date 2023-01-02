@@ -18,4 +18,4 @@ const Appartement = mongoose.Schema({
   timestamps: true
 });
 
-module.exports = mongoose.model("appartements", CertificatShema);
+module.exports = mongoose.model("appartements", Appartement);
