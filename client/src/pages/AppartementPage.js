@@ -2,14 +2,14 @@ import { Helmet } from 'react-helmet-async';
 import React, { useState, useEffect } from 'react';
 // @mui
 import { Container, Stack,TextField, Typography, Modal, Box, Button, Link} from '@mui/material';
-import axios from 'axios';
+import api from '../utils/api'
 import Iconify from '../components/iconify';
 // components
 import { ProductSort, ProductList, ProductCartWidget} from '../sections/@dashboard/products';
 
 // ----------------------------------------------------------------------
 
-export default function ProductsPage() {
+export default function AppartementPage() {
 
   const [projects, setProjects] = useState([])
   const [open, setOpen] = React.useState(false);
@@ -18,8 +18,8 @@ export default function ProductsPage() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const getAllProjects = async()=>{
-    axios.get("http://localhost:4000/api/projects/getall").then((Response)=>{
+  const getAllAppatements = async()=>{
+    api.get("appartement/getall").then((Response)=>{
       console.log(Response);
       setProjects(Response.data)
     }).catch((Error)=>{
@@ -27,7 +27,7 @@ export default function ProductsPage() {
     })
   }
   useEffect(() => {
-    getAllProjects();
+    getAllAppatements();
   }, [])
 
 
@@ -54,11 +54,11 @@ export default function ProductsPage() {
 
       <Stack direction="row" alignItems="center" justifyContent="space-between" flexShrink={0} sx={{ mx: 2  }}>
       <Typography variant="h4" sx={{ mb: 5 }}>
-          projects
+          appartements
         </Typography>
 
         <Link href={`addProject`}>
-          <Button onClick={handleOpen} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>ADD PROJECT</Button> 
+          <Button onClick={handleOpen} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>ADD appartement</Button> 
           </Link>
         <Modal
           open={open}
@@ -81,7 +81,7 @@ export default function ProductsPage() {
       </Stack>
 
 
-        <ProductList products={projects} projects={getAllProjects} />
+        <ProductList products={projects} projects={getAllAppatements} />
 
         <ProductCartWidget />
       </Container>

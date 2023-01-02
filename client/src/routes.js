@@ -4,13 +4,13 @@ import DashboardLayout from './layouts/dashboard';
 import SimpleLayout from './layouts/simple';
 //
 
-import AddProject from './pages/projects/AddProject'
+import AddProject from './pages/projects/AddAppartement'
 import UpdateProject from './pages/projects/UpdateProject'
 import BlogPage from './pages/BlogPage';
 import UserPage from './pages/UserPage';
 import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
-import ProductsPage from './pages/ProjectsPage';
+import ProductsPage from './pages/AppartementPage';
 import CertificatsPage from './pages/CertificatsPage'
 import DashboardAppPage from './pages/DashboardAppPage';
 

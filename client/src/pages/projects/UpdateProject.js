@@ -13,7 +13,7 @@ import Iconify from '../../components/iconify';
 
 // components
 import { ProductSort, ProductList, ProductCartWidget} from '../../sections/@dashboard/products';
-import MultipleSelectChip from './MultipleSelectChip';
+import MultipleSelectChip from './SelectLabels';
 
 // ----------------------------------------------------------------------
 

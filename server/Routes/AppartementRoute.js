@@ -1,11 +1,12 @@
 const express = require('express')
+const { get } = require('../app')
 const router = express.Router()
-const {getAllCertificats, updateCertificat, deleteCertificat, addCertificat, getOneCertificat} = require('../Controllers/AppartementController')
+const {getAllAppartement, updateAppartement, deleteAppartement, addAppartement, getOneAppartement} = require('../Controllers/AppartementController')
 
-router.get('/getAll',getAllCertificats)
-router.get('/getOne/:id',getOneCertificat)
-router.post('/add',addCertificat)
-router.put('/update/:id',updateCertificat)
-router.delete('/delete/:id',deleteCertificat)
+router.get('/getAll',getAllAppartement)
+router.get('/getOne/:id',getOneAppartement)
+router.post('/add',addAppartement)
+router.put('/update/:id',updateAppartement)
+router.delete('/delete/:id',deleteAppartement)
 
 module.exports = router

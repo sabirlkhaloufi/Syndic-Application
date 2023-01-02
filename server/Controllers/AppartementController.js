@@ -16,11 +16,11 @@ const getAllAppartement = asyncHandler(async(req,res) => {
 // method  : get
 // url     : api/Appartement/getOne/:id
 // acces   : Public
-const getOneCertificat = asyncHandler(async(req,res) => {
+const getOneAppartement = asyncHandler(async(req,res) => {
     const {id} = req.params;
     try{
-        const certificat =  await Appartement.findOne({ _id:id});
-        res.send(certificat)
+        const appartement =  await Appartement.findOne({ _id:id});
+        res.send(appartement)
     } catch(error){
         res.status(400)
         throw new Error(error)
@@ -31,19 +31,19 @@ const getOneCertificat = asyncHandler(async(req,res) => {
 // method  : post
 // url     : api/Appartement/add
 // acces   : private
-const addCertificat = asyncHandler(async(req,res) => {
-    
-    const {title, image, ID, dateExperation, } = req.body
-    if(!title || !image || !ID || !dateExperation){
+
+const addAppartement = asyncHandler(async(req,res) => {
+    const {Numero, CnClient, Isrented, Etage} = req.body
+    if(!Numero || !CnClient || !Isrented || !Etage){
         res.status(400)
         throw new Error('please add all fields')
     }else{
         try{
-            const certificat =  await Appartement.create({
-                title,
-                image,
-                ID,
-                dateExperation
+            const appartement =  await Appartement.create({
+                Numero,
+                CnClient,
+                Isrented,
+                Etage
             });
             res.send({message:"add success"})
         } catch(error){
@@ -57,7 +57,7 @@ const addCertificat = asyncHandler(async(req,res) => {
 // method  : put
 // url     : api/Appartement/update/:id
 // acces   : private
-const updateCertificat = asyncHandler(async(req,res) => {
+const updateAppartement = asyncHandler(async(req,res) => {
     const {id} = req.params
     const {title, image, ID, dateExperation, } = req.body
     if(!title || !image || !ID || !dateExperation){
@@ -82,10 +82,10 @@ const updateCertificat = asyncHandler(async(req,res) => {
 // method  : delete
 // url     : api/Appartement/delete/:id
 // acces   : private
-const deleteCertificat = asyncHandler(async(req,res) => {
+const deleteAppartement = asyncHandler(async(req,res) => {
     const {id} = req.params;
     try{
-        const certificat =  await Appartement.findOneAndRemove({ _id:id});
+        const appartement =  await Appartement.findOneAndRemove({ _id:id});
         res.send({message:"deleted success"})
     } catch(error){
         res.status(400)
@@ -95,4 +95,4 @@ const deleteCertificat = asyncHandler(async(req,res) => {
 
 
 
-module.exports = {getAllAppartement, updateCertificat, deleteCertificat, addCertificat, getOneCertificat}
+module.exports = {getAllAppartement, updateAppartement, deleteAppartement, addAppartement, getOneAppartement}
