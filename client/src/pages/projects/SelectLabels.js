@@ -3,7 +3,6 @@ import {InputLabel, MenuItem, FormControl, Select} from '@mui/material';
 
 export default function SelectLabels(props) {
   const [age, setAge] = React.useState('');
-
   const handleChange = (event) => {
     setAge(event.target.value);
     console.log(age);
@@ -17,6 +16,7 @@ export default function SelectLabels(props) {
           value={age}
           label="est loué"
           name='Isrented'
+          variant='outlined'
           onChange={(e) => { props.handleChange(e); handleChange(e); }}
         >
           <MenuItem value={1}>loué</MenuItem>

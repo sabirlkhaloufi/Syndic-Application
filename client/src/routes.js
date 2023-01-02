@@ -5,7 +5,7 @@ import SimpleLayout from './layouts/simple';
 //
 
 import AddProject from './pages/projects/AddAppartement'
-import UpdateProject from './pages/projects/UpdateProject'
+import UpdateProject from './pages/projects/UpdateAppartement'
 import BlogPage from './pages/BlogPage';
 import UserPage from './pages/UserPage';
 import LoginPage from './pages/LoginPage';

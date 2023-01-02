@@ -81,7 +81,7 @@ export default function AppartementPage() {
       </Stack>
 
 
-        <ProductList products={projects} projects={getAllAppatements} />
+        <ProductList appatements={projects} getappatements={getAllAppatements} />
 
         <ProductCartWidget />
       </Container>

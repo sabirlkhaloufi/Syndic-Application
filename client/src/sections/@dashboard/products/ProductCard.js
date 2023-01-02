@@ -13,6 +13,7 @@ import { fCurrency } from '../../../utils/formatNumber';
 // components
 import Label from '../../../components/label';
 import { ColorPreview } from '../../../components/color-utils';
+import api from '../../../utils/api';
 
 // ----------------------------------------------------------------------
 
@@ -30,14 +31,13 @@ ShopProductCard.propTypes = {
   product: PropTypes.object,
 };
 
-export default function ShopProductCard({ product, projects }) {
-  const { title, description, images, lienGihtub, Demo, technologies, _id} = product;
-  console.log(images);
+export default function ShopProductCard({ appartement, getappatements }) {
+  const { Numero, CnClient, Etage, _id} = appartement;
 
-  const deleteProject = (id)=>{
-    axios.delete(`http://localhost:4000/api/projects/delete/${id}`).then((Response)=>{
+  const deleteAppartement = (id)=>{
+    api.delete(`appartement/delete/${id}`).then((Response)=>{
       console.log(Response.data);
-      projects();
+       getappatements();
     }).catch( (Error)=>{
       console.log(Error);
     })
@@ -46,24 +46,24 @@ export default function ShopProductCard({ product, projects }) {
     <Card>
       <Box sx={{ pt: '100%', position: 'relative' }}>
 
-        <StyledProductImg alt={"img"} src={`http://localhost:4000/${images[0]}`} />
+        <StyledProductImg alt={"img"} src={`https://images.prismic.io/emerige-2018%2F2ae6853b-eb0c-461b-8b9e-0375158eb532_suresnes-decour-livraison-residence-jardin-web-min.jpg?auto=compress,format&rect=0,57,1296,639&w=872&h=430`} />
       </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
         <Link color="inherit" underline="hover">
           <Typography variant="subtitle2" noWrap>
-            {title}
+            {Numero}
           </Typography>
         </Link>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <Button variant="contained" size='small' color="primary" onClick={()=>{deleteProject(_id)}} sx={{ mr: 1 }} startIcon={<DeleteIcon />}>
-            Delete
+          <Button variant="contained" size='small' color="error" onClick={()=>{deleteAppartement(_id)}} sx={{ mr: 1 }}>
+          <DeleteIcon />
           </Button>
 
           <Link href={`updateProject/${_id}`}>
-          <Button variant="contained" size='small' color="primary" startIcon={<EditIcon />}>
-            update
+          <Button variant="contained" size='small' color="primary">
+          <EditIcon />
           </Button>
           </Link>
         </Stack>

@@ -10,6 +10,11 @@ const Payment = mongoose.Schema({
     type: String,
     required: true,
   },
+  NumeroApparetement: {
+    type:[mongoose.Schema.Types.ObjectId],
+    ref:'appartements',
+    require: true
+  },
   Date: {
     type: Date,
     required: true,
