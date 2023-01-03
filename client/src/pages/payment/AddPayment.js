@@ -54,13 +54,17 @@ const AddPayment = async () => {
 
       <Stack direction="row" alignItems="center" justifyContent="space-between" flexShrink={0} sx={{ mx: 2  }}>
       <Typography variant="h4" sx={{ mb: 5 }}>
-          add appartement
+      AddPayment
         </Typography>
 
       </Stack>
 
       <form className='mx-4'>
       {error && <Alert severity="error" sx={{ mb:2}}>{error}</Alert>}
+
+      <div className="mb-3">
+          <SelectLabels handleChange={onChange}/>
+        </div>
         <div className="mb-3">
           <TextField id="outlined-basic"   name='Numero' label="Numero d'appartement" onChange={onChange} variant="outlined" sx={{ width: "100%"}}/>
         </div>
@@ -70,9 +74,7 @@ const AddPayment = async () => {
         <div className="mb-3">
           <TextField id="outlined-basic"   name='Etage' label="Numero Etage" onChange={onChange} variant="outlined" sx={{ width: "100%"}}/>
         </div>
-        <div className="mb-3">
-          <SelectLabels handleChange={onChange}/>
-        </div>
+        
 
         <Button sx={{ width: "100%" }} size="medium" onClick={AddPayment} variant="contained" startIcon={<Iconify icon="eva:plus-fill"  />}>
             Add

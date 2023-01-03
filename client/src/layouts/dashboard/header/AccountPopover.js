@@ -1,39 +1,24 @@
 import { useState } from 'react';
 // @mui
+import { useNavigate } from 'react-router-dom';
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
 import { useSelector } from 'react-redux';
 // mocks_
 import account from '../../../_mock/account';
-
-
-// ----------------------------------------------------------------------
-
-const MENU_OPTIONS = [
-  {
-    label: 'Home',
-    icon: 'eva:home-fill',
-  },
-  {
-    label: 'Profile',
-    icon: 'eva:person-fill',
-  },
-  {
-    label: 'Settings',
-    icon: 'eva:settings-2-fill',
-  },
-];
-
-// ----------------------------------------------------------------------
+import api from '../../../utils/api';
 
 
 
 export default function AccountPopover() {
 
   const isLogged = useSelector(state => state.auth.isLogged)
+  const Naviagate = useNavigate();
 
   const [user, SetUser] = useState({})
   const [open, setOpen] = useState(null);
+
+  
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -42,6 +27,17 @@ export default function AccountPopover() {
   const handleClose = () => {
     setOpen(null);
   };
+
+
+  const Logout = () => {
+    api.get("auth/logout",{
+      headers:{'set-cookie': document.coockie}
+    ,withCredentials:true}).then((Response)=>{
+      Naviagate("/Login")
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
 
   return (
     <>
@@ -95,17 +91,9 @@ export default function AccountPopover() {
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
-        <Stack sx={{ p: 1 }}>
-          {MENU_OPTIONS.map((option) => (
-            <MenuItem key={option.label} onClick={handleClose}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </Stack>
-
         <Divider sx={{ borderStyle: 'dashed' }} />
 
-        <MenuItem onClick={handleClose} sx={{ m: 1 }}>
+        <MenuItem onClick={Logout} sx={{ m: 1 }}>
           Logout
         </MenuItem>
       </Popover>
