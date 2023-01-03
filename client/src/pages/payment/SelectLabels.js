@@ -10,12 +10,12 @@ export default function SelectLabels(props) {
 
   return (
       <FormControl sx={{ width: "100%"}}>
-        <InputLabel id="demo-simple-select-helper-label">est loué</InputLabel>
+        <InputLabel id="demo-simple-select-helper-label">Apparetement</InputLabel>
         <Select
           id="demo-simple-select-helper"
           value={age}
-          label="est loué"
-          name='Isrented'
+          label="Apparetement"
+          name='Apparetement'
           variant='outlined'
           onChange={(e) => { props.handleChange(e); handleChange(e); }}
         >

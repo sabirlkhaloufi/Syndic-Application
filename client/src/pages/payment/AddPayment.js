@@ -33,7 +33,7 @@ const onChange = (e)=>{
 
 const AddPayment = async () => {
       console.log(formData);
-      await api.post('appartement/add', formData).then((Response)=>{
+      await api.post('payment/add', formData).then((Response)=>{
         console.log(Response);
         setError("")
         // window.location = "projects"
@@ -66,13 +66,10 @@ const AddPayment = async () => {
           <SelectLabels handleChange={onChange}/>
         </div>
         <div className="mb-3">
-          <TextField id="outlined-basic"   name='Numero' label="Numero d'appartement" onChange={onChange} variant="outlined" sx={{ width: "100%"}}/>
+          <TextField id="outlined-basic"   name='Prix' label="Prix" onChange={onChange} variant="outlined" sx={{ width: "100%"}}/>
         </div>
         <div className="mb-3">
-          <TextField id="outlined-basic" label="carte national client" name='CnClient' variant="outlined" onChange={onChange} sx={{ width: "100%" }} />
-        </div>
-        <div className="mb-3">
-          <TextField id="outlined-basic"   name='Etage' label="Numero Etage" onChange={onChange} variant="outlined" sx={{ width: "100%"}}/>
+          <TextField id="outlined-basic"   name='Date' label="Date" onChange={onChange} variant="outlined" sx={{ width: "100%"}}/>
         </div>
         
 
