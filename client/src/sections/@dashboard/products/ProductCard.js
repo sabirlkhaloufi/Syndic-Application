@@ -61,7 +61,7 @@ export default function ShopProductCard({ appartement, getappatements }) {
           <DeleteIcon />
           </Button>
 
-          <Link href={`updateProject/${_id}`}>
+          <Link href={`updateAppartement/${_id}`}>
           <Button variant="contained" size='small' color="primary">
           <EditIcon />
           </Button>

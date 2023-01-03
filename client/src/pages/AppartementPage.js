@@ -57,9 +57,9 @@ export default function AppartementPage() {
           appartements
         </Typography>
 
-        <Link href={`addProject`}>
+        <Link href={`addAppartement`}>
           <Button onClick={handleOpen} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>ADD appartement</Button> 
-          </Link>
+        </Link>
         <Modal
           open={open}
           onClose={handleClose}

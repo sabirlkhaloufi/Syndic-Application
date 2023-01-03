@@ -6,6 +6,7 @@ import {useCookies} from 'react-cookie'
 import { styled } from '@mui/material/styles';
 //
 import Header from './header';
+import ProtectedRoute from '../../utils/ProtectedRoute'
 import Nav from './nav';
 
 // ----------------------------------------------------------------------
@@ -40,10 +41,7 @@ export default function DashboardLayout() {
   const [cookie] = useCookies();
   const token = cookie.token;
 
-  if(!token){
-    console.log("notoken");
-    Navigate("/login");
-  }else{
+ 
     return(
     <StyledRoot>
         <Header onOpenNav={() => setOpen(true)} />
@@ -51,9 +49,9 @@ export default function DashboardLayout() {
         <Nav openNav={open} onCloseNav={() => setOpen(false)} />
   
         <Main>
-          <Outlet />
+        <ProtectedRoute/>
         </Main>
       </StyledRoot>)
   }
   
-}
+

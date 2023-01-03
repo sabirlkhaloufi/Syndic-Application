@@ -4,32 +4,45 @@ import DashboardLayout from './layouts/dashboard';
 import SimpleLayout from './layouts/simple';
 //
 
-import AddProject from './pages/projects/AddAppartement'
-import UpdateProject from './pages/projects/UpdateAppartement'
+
+/// appartemenet
+import AppartementPage from './pages/AppartementPage';
+import AddAppartement from './pages/appartement/AddAppartement'
+import UpdateAppartement from './pages/appartement/UpdateAppartement'
+
+/// payment
+import PaymentPage from './pages/PaymentPage'
+import AddPayment from './pages/payment/AddPayment'
+import UpdatePayment from './pages/payment/UpdatePayment'
+
+
+import ProtectedRoute from './utils/ProtectedRoute';
+
 import BlogPage from './pages/BlogPage';
 import UserPage from './pages/UserPage';
 import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
-import ProductsPage from './pages/AppartementPage';
-import CertificatsPage from './pages/CertificatsPage'
 import DashboardAppPage from './pages/DashboardAppPage';
 
 // ----------------------------------------------------------------------
 
 export default function Router() {
   const routes = useRoutes([
+
     {
       path: '/dashboard',
       element: <DashboardLayout />,
       children: [
-        { element: <Navigate to="/dashboard/app" />, index: true },
+        { element: <Navigate to="/" />, index: true },
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'user', element: <UserPage /> },
-        { path: 'blog', element: <BlogPage /> },
-        { path: 'projects', element: <ProductsPage />},
-        { path: 'certificats', element: <CertificatsPage />},
-        { path: 'addProject', element: <AddProject />},
-        { path: 'updateProject/:id', element: <UpdateProject />},
+        { path: 'appartements', element: <AppartementPage />},
+        { path: 'addAppartement', element: <AddAppartement />},
+        { path: 'updateAppartement/:id', element: <UpdateAppartement />},
+
+        { path: 'payments', element: <PaymentPage />},
+        { path: 'addPayment', element: <AddPayment />},
+        { path: 'updatePayment', element: <UpdatePayment />},
       ],
     },
     
