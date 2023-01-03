@@ -6,6 +6,13 @@ import 'react-circular-progressbar/dist/styles.css';
 
 // @mui
 import { Container, Stack,TextField,Alert, Typography, Button, FormControl, InputLabel, Input, FormHelperText} from '@mui/material';
+import dayjs from 'dayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import api from '../../utils/api';
 import Iconify from '../../components/iconify';
 
@@ -22,6 +29,14 @@ export default function AddPayment() {
 const [formData, setFormData] = useState({})
 const [error, setError] = useState("")
 
+
+
+const [value, setValue] = React.useState(dayjs('2014-08-18'));
+
+  const handleChange = (newValue) => {
+    setValue(newValue);
+  };
+
 const Navigate = useNavigate();
 
 const onChange = (e)=>{
@@ -33,6 +48,7 @@ const onChange = (e)=>{
 
 const AddPayment = async () => {
       console.log(formData);
+      formData.Date = value.$d;
       await api.post('payment/add', formData).then((Response)=>{
         console.log(Response);
         setError("")
@@ -69,7 +85,17 @@ const AddPayment = async () => {
           <TextField id="outlined-basic"   name='Prix' label="Prix" onChange={onChange} variant="outlined" sx={{ width: "100%"}}/>
         </div>
         <div className="mb-3">
-          <TextField id="outlined-basic"   name='Date' label="Date" onChange={onChange} variant="outlined" sx={{ width: "100%"}}/>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <Stack spacing={3}>
+        <DesktopDatePicker
+          label="Date"
+          inputFormat="YYYY/DD/MM"
+          value={value}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} />}
+        />
+      </Stack>
+    </LocalizationProvider>
         </div>
         
 

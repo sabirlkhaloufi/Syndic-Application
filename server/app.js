@@ -33,14 +33,14 @@ app.use(cors({ origin:['http://localhost:3000','http://localhost:3001'], credent
 // require routes in folder routes
 const AuthRoute = require("./Routes/AuthRoute")
 const Appartement = require("./Routes/AppartementRoute")
-// const Payment = require("./Routes/PaymentRoute")
+const Payment = require("./Routes/PaymentRoute")
 
 
 app.use(express.json())
 
 app.use("/api/auth",AuthRoute)
 app.use("/api/appartement",Appartement)
-// app.use("/api/payment",Payment)
+app.use("/api/payment",Payment)
 
 app.use('*',routeError)
 

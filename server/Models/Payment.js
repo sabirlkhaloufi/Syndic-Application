@@ -6,11 +6,7 @@ const Payment = mongoose.Schema({
     type: String,
     required: true,
   },
-  Name: {
-    type: String,
-    required: true,
-  },
-  NumeroApparetement: {
+  Apparetement: {
     type:[mongoose.Schema.Types.ObjectId],
     ref:'appartements',
     require: true

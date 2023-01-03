@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const {getAllExperiences, updateExperience, deleteExperience, addExperience, getOneExperience} = require('../Controllers/PaymentController')
+const {getAllPayment, getOnePayment, addPayment, updatePayment, deletePayment} = require('../Controllers/PaymentController')
 
-router.get('/getAll',getAllExperiences)
-router.get('/getone/:id',getOneExperience)
-router.post('/add',addExperience)
-router.put('/update/:id',updateExperience)
-router.delete('/delete/:id',deleteExperience)
+router.get('/getAll',getAllPayment)
+router.get('/getone/:id',getOnePayment)
+router.post('/add',addPayment)
+router.put('/update/:id',updatePayment)
+router.delete('/delete/:id',deletePayment)
 
 module.exports = router

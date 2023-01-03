@@ -16,11 +16,11 @@ const getAllPayment = asyncHandler(async(req,res) => {
 // method  : get
 // url     : api/Payment/getOne/:id
 // acces   : Public
-const getOneExperience = asyncHandler(async(req,res) => {
+const getOnePayment = asyncHandler(async(req,res) => {
     const {id} = req.params;
     try{
-        const experience =  await Payment.findOne({ _id:id});
-        res.send(experience)
+        const payment =  await Payment.findOne({ _id:id});
+        res.send(payment)
     } catch(error){
         res.status(400)
         throw new Error(error)
@@ -31,19 +31,19 @@ const getOneExperience = asyncHandler(async(req,res) => {
 // method  : post
 // url     : api/Payment/add
 // acces   : private
-const addExperience = asyncHandler(async(req,res) => {
-    const {title, entreprise, firstYear, endYear, type } = req.body
-    if(!title || !entreprise || !firstYear || !endYear || !type){
+const addPayment = asyncHandler(async(req,res) => {
+    const {Apparetement, Prix, Date} = req.body
+    if(!Apparetement || !Prix || !Date){
+
         res.status(400)
         throw new Error('please add all fields')
     }else{
         try{
-            const experience =  await Payment.create({
-                title,
-                entreprise,
-                firstYear,
-                endYear,
-                type
+
+            const payment =  await Payment.create({
+                Apparetement,
+                Prix,
+                Date
             });
             res.send({message:"add success"})
         } catch(error){
@@ -57,20 +57,18 @@ const addExperience = asyncHandler(async(req,res) => {
 // method  : put
 // url     : api/Payment/update/:id
 // acces   : private
-const updateExperience = asyncHandler(async(req,res) => {
+const updatePayment = asyncHandler(async(req,res) => {
     const {id} = req.params
-    const {title, entreprise, firstYear, endYear, type } = req.body
-    if(!title || !entreprise || !firstYear || !endYear || !type){
+    const {Apparetement, Prix, Date} = req.body
+    if(!Apparetement || !Prix || !Date){
         res.status(400)
         throw new Error('please add all fields')
     }else{
         try{
-            const experience =  await Payment.updateOne({_id:id},{
-                title,
-                entreprise,
-                firstYear,
-                endYear,
-                type
+            const payment =  await Payment.updateOne({_id:id},{
+                Apparetement,
+                Prix,
+                Date
             });
             res.send({message:"updated success"})
         } catch(error){
@@ -83,10 +81,10 @@ const updateExperience = asyncHandler(async(req,res) => {
 // method  : delete
 // url     : api/Payment/delete/:id
 // acces   : private
-const deleteExperience = asyncHandler(async(req,res) => {
+const deletePayment = asyncHandler(async(req,res) => {
     const {id} = req.params;
     try{
-        const experience =  await Payment.findOneAndRemove({ _id:id});
+        const payment =  await Payment.findOneAndRemove({ _id:id});
         res.send({message:"deleted success"})
     } catch(error){
         res.status(400)
@@ -96,4 +94,4 @@ const deleteExperience = asyncHandler(async(req,res) => {
 
 
 
-module.exports = {getAllPayment, updateExperience, deleteExperience, addExperience ,getOneExperience}
+module.exports = {getAllPayment, getOnePayment, addPayment, updatePayment, deletePayment}
