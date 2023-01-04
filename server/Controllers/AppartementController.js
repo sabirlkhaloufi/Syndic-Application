@@ -33,16 +33,14 @@ const getOneAppartement = asyncHandler(async(req,res) => {
 // acces   : private
 
 const addAppartement = asyncHandler(async(req,res) => {
-    const {Numero, CnClient, Isrented, Etage} = req.body
-    if(!Numero || !CnClient || !Isrented || !Etage){
+    const {Numero, Etage} = req.body
+    if(!Numero || !Etage){
         res.status(400)
         throw new Error('please add all fields')
     }else{
         try{
             const appartement =  await Appartement.create({
                 Numero,
-                CnClient,
-                Isrented,
                 Etage
             });
             res.send({message:"add success"})
@@ -59,16 +57,14 @@ const addAppartement = asyncHandler(async(req,res) => {
 // acces   : private
 const updateAppartement = asyncHandler(async(req,res) => {
     const {id} = req.params
-    const {Numero, CnClient, Isrented, Etage, } = req.body
-    if(!Numero || !CnClient || !Isrented || !Etage){
+    const {Numero, Etage, } = req.body
+    if(!Numero || !Etage){
         res.status(400)
         throw new Error('please add all fields')
     }else{
         try{
             const appartement =  await Appartement.updateOne({_id:id},{
                 Numero,
-                CnClient,
-                Isrented,
                 Etage
             });
             res.send({message:"updated success"})

@@ -5,16 +5,17 @@ const Appartement = mongoose.Schema({
     type: String,
     required: true,
   },
-  CnClient: {
-    type: String,
-    required: true,
-  },
-  Isrented:{
-    type: Boolean,
-    require:true
-  },
+
+  // CnClient: {
+  //   type: String,
+  //   required: true,
+  // },
+  // Isrented:{
+  //   type: Boolean,
+  //   require:true
+  // },
   Etage: {
-    type: String,
+    type: Number,
     require: true
   }
 },
