@@ -6,12 +6,12 @@ const api = "/api/appartement/";
 //test Register Method
 //POST: /api/auth/register
 describe('appartement', () => {
-  
+
     it('add appartement', async () => {
       const res = await request(app)
         .post(api+"add")
         .send({
-          Numero: "sabir",  
+          Numero: "h2",  
           Etage: 23,
         })
   
@@ -55,7 +55,7 @@ describe('appartement', () => {
       const res = await request(app)
         .put(api+"update/63b47e61aaa214b3bdcab1f8")
         .send({
-          Numero: "H1233",  
+          Numero: "H1233",
           Etage: 23,
         })
   
