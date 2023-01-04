@@ -94,6 +94,15 @@ export default function UserPage() {
 
   const [payments, setPayments] = useState([])
 
+  const deletePayment = (id)=>{
+    api.delete(`payment/delete/${id}`).then((Response)=>{
+      console.log(Response.data);
+      getAllAppatements();
+    }).catch( (Error)=>{
+      console.log(Error);
+    })
+  }
+
   const getAllAppatements = async()=>{
     api.get("payment/getall").then((Response)=>{
       console.log(Response);
@@ -239,7 +248,7 @@ export default function UserPage() {
                           </Link>
                         </TableCell>
 
-                        <TableCell align="left">
+                        <TableCell align="left" onClick={()=>deletePayment(_id)}>
                           <Button variant="contained" color='error'>
                             <Iconify icon={'eva:trash-2-outline'}  />
                           </Button>
