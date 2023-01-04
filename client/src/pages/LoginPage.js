@@ -46,7 +46,7 @@ export default function LoginPage() {
   return (
     <>
       <Helmet>
-        <title> Login | MYPortfolio</title>
+        <title> Login | Syndic</title>
       </Helmet>
 
       <StyledRoot>
@@ -73,13 +73,9 @@ export default function LoginPage() {
               Sign in to My Portfolio Dashboard
             </Typography>
 
-            
-
-           
-
             <Divider sx={{ my: 3 }}>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              <img src="/assets/logo.png" alt="logo" width={300} />
+              <img src="/assets/syndic.png" alt="logo" width={300} />
               </Typography>
             </Divider>
 

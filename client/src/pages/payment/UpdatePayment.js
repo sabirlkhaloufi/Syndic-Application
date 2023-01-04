@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams, useNavigate } from 'react-router-dom';
 import {CircularProgressbar, buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -30,6 +30,8 @@ export default function UpdatePayment() {
 const {id} = useParams();
 const [formData, setFormData] = useState({})
 const [error, setError] = useState("")
+
+const Navigate = useNavigate();
 
 const [value, setValue] = React.useState(dayjs('2014-08-18'));
 
@@ -63,6 +65,7 @@ const UpdatePayment = async () => {
       await api.put(`payment/update/${id}`, formData).then((Response)=>{
         console.log(Response);
         setError("");
+        Navigate("/dashboard/payments")
       }).catch((Error)=>{
         console.log(Error);
         setError(Error.response.data.message)
@@ -94,7 +97,7 @@ const UpdatePayment = async () => {
           <SelectLabels handleChange={onChange} value={formData.Apparetement}/>
         </div>
         <div className="mb-3">
-          <TextField id="outlined-basic" value={formData.Prix}   name='Prix' label="Prix" onChange={onChange} variant="outlined" sx={{ width: "100%"}}
+          <TextField id="outlined-basic" type='number' value={formData.Prix}   name='Prix' label="Prix" onChange={onChange} variant="outlined" sx={{ width: "100%"}}
           InputLabelProps={{
             shrink: true,
           }}/>

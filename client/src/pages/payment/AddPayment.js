@@ -52,7 +52,7 @@ const AddPayment = async () => {
       await api.post('payment/add', formData).then((Response)=>{
         console.log(Response);
         setError("")
-        Navigate("/dashboard/payments")
+        // Navigate("/dashboard/payments")
       }).catch((Error)=>{
         console.log(Error.response.data.message);
         setError(Error.response.data.message)
@@ -82,7 +82,7 @@ const AddPayment = async () => {
           <SelectLabels handleChange={onChange}/>
         </div>
         <div className="mb-3">
-          <TextField id="outlined-basic"   name='Prix' label="Prix" onChange={onChange} variant="outlined" sx={{ width: "100%"}}/>
+          <TextField id="outlined-basic"  type='number'  name='Prix' label="Prix" onChange={onChange} variant="outlined" sx={{ width: "100%"}}/>
         </div>
         <div className="mb-3">
         <LocalizationProvider dateAdapter={AdapterDayjs}>

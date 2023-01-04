@@ -64,15 +64,15 @@ const addAppartement = async () => {
         <div className="mb-3">
           <TextField id="outlined-basic"   name='Numero' label="Numero d'appartement" onChange={onChange} variant="outlined" sx={{ width: "100%"}}/>
         </div>
-        <div className="mb-3">
+        {/* <div className="mb-3">
           <TextField id="outlined-basic" label="carte national client" name='CnClient' variant="outlined" onChange={onChange} sx={{ width: "100%" }} />
-        </div>
+        </div> */}
         <div className="mb-3">
-          <TextField id="outlined-basic"   name='Etage' label="Numero Etage" onChange={onChange} variant="outlined" sx={{ width: "100%"}}/>
+          <TextField id="outlined-basic"  type='number'  name='Etage' label="Numero Etage" onChange={onChange} variant="outlined" sx={{ width: "100%"}}/>
         </div>
-        <div className="mb-3">
+        {/* <div className="mb-3">
           <SelectLabels handleChange={onChange}/>
-        </div>
+        </div> */}
 
         <Button sx={{ width: "100%" }} size="medium" onClick={addAppartement} variant="contained" startIcon={<Iconify icon="eva:plus-fill"  />}>
             Add

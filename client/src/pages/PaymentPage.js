@@ -228,7 +228,7 @@ export default function UserPage() {
 
                         <TableCell align="left">{Apparetement}</TableCell>
 
-                        <TableCell align="left">{Prix}</TableCell>
+                        <TableCell align="left">{`${Prix}  DH`}</TableCell>
 
                         <TableCell align="left">{Date}</TableCell>
 
