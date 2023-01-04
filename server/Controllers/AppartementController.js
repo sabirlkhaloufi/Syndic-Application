@@ -39,11 +39,19 @@ const addAppartement = asyncHandler(async(req,res) => {
         throw new Error('please add all fields')
     }else{
         try{
-            const appartement =  await Appartement.create({
-                Numero,
-                Etage
-            });
-            res.send({message:"add success"})
+
+            // const getappatement = Appartement.findOne({Numero: Numero});
+            // console.log(getappatement);
+
+            
+                const appartement =  await Appartement.create({
+                    Numero,
+                    Etage
+                });
+                res.send({message:"add success"})
+            
+            
+            
         } catch(error){
             res.status(400)
             throw new Error(error)
