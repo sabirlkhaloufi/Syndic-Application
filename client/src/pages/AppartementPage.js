@@ -1,7 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 // @mui
-import { Container, Stack,TextField, Typography, Modal, Box, Button, Link} from '@mui/material';
+import { Container, Stack,TextField, Typography, Modal, Box, Button} from '@mui/material';
 import api from '../utils/api'
 import Iconify from '../components/iconify';
 // components
@@ -57,7 +58,7 @@ export default function AppartementPage() {
           appartements
         </Typography>
 
-        <Link href={`addAppartement`}>
+        <Link to={`/dashboard/addAppartement`}>
           <Button onClick={handleOpen} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>ADD appartement</Button> 
         </Link>
         <Modal

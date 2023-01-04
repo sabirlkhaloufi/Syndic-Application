@@ -1,7 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
+import {Link} from 'react-router-dom'
 import { sentenceCase } from 'change-case';
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 // @mui
 import {
   Card,
@@ -26,6 +27,8 @@ import {
 import Label from '../components/label';
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
+import api from '../utils/api';
+
 // sections
 import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
 // mock
@@ -34,11 +37,11 @@ import USERLIST from '../_mock/user';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'company', label: 'Company', alignRight: false },
-  { id: 'role', label: 'Role', alignRight: false },
-  { id: 'isVerified', label: 'Verified', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
+  { id: 'appartement', label: 'Appartement', alignRight: false },
+  { id: 'prix', label: 'Prix', alignRight: false },
+  { id: 'date', label: 'Date', alignRight: false },
+  { id: 'imprimer', label: 'Imprimer', alignRight: false },
+  // { id: 'status', label: 'Status', alignRight: false },
   { id: '' },
 ];
 
@@ -87,6 +90,21 @@ export default function UserPage() {
   const [filterName, setFilterName] = useState('');
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  const [payments, setPayments] = useState([])
+
+  const getAllAppatements = async()=>{
+    api.get("payment/getall").then((Response)=>{
+      console.log(Response);
+      setPayments(Response.data)
+    }).catch((Error)=>{
+      console.log(Error);
+    })
+  }
+  useEffect(() => {
+    getAllAppatements();
+  }, [])
+
 
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
@@ -155,11 +173,14 @@ export default function UserPage() {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            User
+            Payments
           </Typography>
+          <Link to="/dashboard/addpayment">
           <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New User
+            add payment
           </Button>
+          </Link>
+          
         </Stack>
 
         <Card>
@@ -177,34 +198,39 @@ export default function UserPage() {
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
                 />
+
                 <TableBody>
-                  {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, role, status, company, avatarUrl, isVerified } = row;
-                    const selectedUser = selected.indexOf(name) !== -1;
+                  {payments.map((row) => {
+                    const { _id, Apparetement, Date, Prix} = row;
+                    const selectedUser = selected.indexOf(_id) !== -1;
 
                     return (
-                      <TableRow hover key={id} tabIndex={-1} role="checkbox" selected={selectedUser}>
-                        <TableCell padding="checkbox">
+                      <TableRow hover key={_id} tabIndex={-1} role="checkbox" selected={selectedUser}>
+                        {/* <TableCell padding="checkbox">
                           <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, name)} />
-                        </TableCell>
+                        </TableCell> */}
 
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} src={avatarUrl} />
-                            <Typography variant="subtitle2" noWrap>
-                              {name}
-                            </Typography>
+                            {/* <Avatar alt={name} src={avatarUrl} /> */}
+                            {/* <Typography variant="subtitle2" noWrap>
+                              {"ss"}
+                            </Typography> */}
                           </Stack>
                         </TableCell>
 
-                        <TableCell align="left">{company}</TableCell>
+                        <TableCell align="left">{Apparetement}</TableCell>
 
-                        <TableCell align="left">{role}</TableCell>
+                        <TableCell align="left">{Prix}</TableCell>
 
-                        <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
+                        <TableCell align="left">{Date}</TableCell>
+
+
 
                         <TableCell align="left">
-                          <Label color={(status === 'banned' && 'error') || 'success'}>{sentenceCase(status)}</Label>
+                        <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+                          Imprimer
+                        </Button>
                         </TableCell>
 
                         <TableCell align="right">

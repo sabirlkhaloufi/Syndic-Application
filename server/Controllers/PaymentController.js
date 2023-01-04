@@ -7,9 +7,32 @@ const asyncHandler = require('express-async-handler');
 // url     : api/Payment/getAll
 // acces   : Puplic
 const getAllPayment = asyncHandler(async(req,res) => {
-    Payment.find({}, function(err, Experience) {
-        res.send(Experience);  
+    Payment.find({}, function(err, payment) {
+        res.send(payment);  
     });
+
+
+    userCollection.aggregate([{
+        $group: resources
+    }, {
+        $lookup: {
+            from: "Comments", // collection to join
+            localField: "_id",//field from the input documents
+            foreignField: "user_id",//field from the documents of the "from" collection
+            as: "comments"// output array field
+        }
+    }, {
+        $lookup: {
+            from: "Post", // from collection name
+            localField: "_id",
+            foreignField: "user_id",
+            as: "posts"
+        }
+    }],function (error, data) {
+     return res.json(data);
+ //handle error case also
+});
+
 })
 
 

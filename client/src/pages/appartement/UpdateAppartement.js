@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {CircularProgressbar, buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -24,6 +24,8 @@ export default function UpdateAppartement() {
 const {id} = useParams();
 const [formData, setFormData] = useState({})
 const [error, setError] = useState("")
+const Navigate = useNavigate();
+
 
 const getAppatement = async()=>{
   api.get(`appartement/getone/${id}`).then((Response)=>{
@@ -49,6 +51,7 @@ const onChange = (e)=>{
 const updateAppartement = async (data, options) => {
       await api.put(`appartement/update/${id}`, formData).then((Response)=>{
         console.log(Response);
+        Navigate("/dashboard/appartements")
       }).catch((Error)=>{
         console.log(Error);
       })

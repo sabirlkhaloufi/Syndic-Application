@@ -36,7 +36,7 @@ const addAppartement = async () => {
       await api.post('appartement/add', formData).then((Response)=>{
         console.log(Response);
         setError("")
-        // window.location = "projects"
+        Navigate("/dashboard/appartements")
       }).catch((Error)=>{
         console.log(Error.response.data.message);
         setError(Error.response.data.message)
