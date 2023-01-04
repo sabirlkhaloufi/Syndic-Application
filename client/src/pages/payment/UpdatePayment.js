@@ -7,7 +7,13 @@ import 'react-circular-progressbar/dist/styles.css';
 
 // @mui
 import { Container, Stack,TextField, Typography, Modal, Box, Button, FormControl, InputLabel, Input, FormHelperText, Alert} from '@mui/material';
-import axios from 'axios';
+import dayjs from 'dayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import Iconify from '../../components/iconify';
 
 
@@ -25,8 +31,15 @@ const {id} = useParams();
 const [formData, setFormData] = useState({})
 const [error, setError] = useState("")
 
-const getAppatement = async()=>{
-  api.get(`appartement/getone/${id}`).then((Response)=>{
+const [value, setValue] = React.useState(dayjs('2014-08-18'));
+
+  const handleChange = (newValue) => {
+    setValue(newValue);
+    setFormData({Date:value})
+  };
+
+const getPayment = async()=>{
+  api.get(`payment/getone/${id}`).then((Response)=>{
     console.log(Response);
     setFormData(Response.data)
   }).catch((Error)=>{
@@ -35,7 +48,7 @@ const getAppatement = async()=>{
 }
 
 useEffect(() => {
-  getAppatement();
+  getPayment();
 }, [])
 
 const onChange = (e)=>{
@@ -46,11 +59,13 @@ const onChange = (e)=>{
 }
 
 
-const UpdatePayment = async (data, options) => {
-      await api.put(`appartement/update/${id}`, formData).then((Response)=>{
+const UpdatePayment = async () => {
+      await api.put(`payment/update/${id}`, formData).then((Response)=>{
         console.log(Response);
+        setError("");
       }).catch((Error)=>{
         console.log(Error);
+        setError(Error.response.data.message)
       })
   
 }
@@ -74,33 +89,33 @@ const UpdatePayment = async (data, options) => {
 
       <form className='mx-4'>
       {error && <Alert severity="error" sx={{ mb:2}}>{error}</Alert>}
-        <div className="mb-3">
-          <TextField id="outlined-basic"   name='Numero' label="Numero d'appartement"  onChange={onChange} variant="outlined" sx={{ width: "100%"}} value={formData.Numero}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          
-          />
+
+      <div className="mb-3">
+          <SelectLabels handleChange={onChange} value={formData.Apparetement}/>
         </div>
         <div className="mb-3">
-          <TextField id="outlined-basic" label="carte national client" name='CnClient' variant="outlined" onChange={onChange} sx={{ width: "100%" }} value={formData.CnClient}
-          InputLabelProps={{
-            shrink: true,
-          }} />
-        </div>
-        <div className="mb-3">
-          <TextField id="outlined-basic"   name='Etage' label="Numero Etage" onChange={onChange} variant="outlined" sx={{ width: "100%"}} value={formData.Etage}
+          <TextField id="outlined-basic" value={formData.Prix}   name='Prix' label="Prix" onChange={onChange} variant="outlined" sx={{ width: "100%"}}
           InputLabelProps={{
             shrink: true,
           }}/>
-          
         </div>
         <div className="mb-3">
-          <SelectLabels handleChange={onChange} value={formData.Isrented}/>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <Stack spacing={3}>
+        <DesktopDatePicker
+          label="Date"
+          inputFormat="YYYY/DD/MM"
+          value={formData.Date}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} />}
+        />
+      </Stack>
+    </LocalizationProvider>
         </div>
+        
 
         <Button sx={{ width: "100%" }} size="medium" onClick={UpdatePayment} variant="contained" startIcon={<Iconify icon="eva:plus-fill"  />}>
-            Update
+            update
           </Button>
       </form>
 

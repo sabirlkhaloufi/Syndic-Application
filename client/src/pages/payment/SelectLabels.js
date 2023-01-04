@@ -23,6 +23,7 @@ export default function SelectLabels(props) {
   }
   useEffect(() => {
     getAllAppatements();
+    console.log(props.value);
   }, [])
 
 
@@ -32,7 +33,7 @@ export default function SelectLabels(props) {
         <InputLabel id="demo-simple-select-helper-label">Apparetement</InputLabel>
         <Select
           id="demo-simple-select-helper"
-          value={age}
+          value={props.value}
           label="Apparetement"
           name='Apparetement'
           variant='outlined'

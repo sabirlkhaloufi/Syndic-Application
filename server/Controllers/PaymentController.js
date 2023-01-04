@@ -7,9 +7,8 @@ const asyncHandler = require('express-async-handler');
 // url     : api/Payment/getAll
 // acces   : Puplic
 const getAllPayment = asyncHandler(async(req,res) => {
-    Payment.find({}, function(err, payment) {
-        res.send(payment);  
-    });
+    const payment  = await Payment.find()
+    res.send(payment);  
 
 
     userCollection.aggregate([{

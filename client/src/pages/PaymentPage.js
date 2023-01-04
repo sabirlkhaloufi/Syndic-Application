@@ -37,11 +37,12 @@ import USERLIST from '../_mock/user';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
+  { id: '' },
   { id: 'appartement', label: 'Appartement', alignRight: false },
   { id: 'prix', label: 'Prix', alignRight: false },
   { id: 'date', label: 'Date', alignRight: false },
   { id: 'imprimer', label: 'Imprimer', alignRight: false },
-  // { id: 'status', label: 'Status', alignRight: false },
+  { id: '' },
   { id: '' },
 ];
 
@@ -206,16 +207,13 @@ export default function UserPage() {
 
                     return (
                       <TableRow hover key={_id} tabIndex={-1} role="checkbox" selected={selectedUser}>
-                        {/* <TableCell padding="checkbox">
-                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, name)} />
-                        </TableCell> */}
+                        <TableCell padding="checkbox">
+                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, _id)} />
+                        </TableCell>
 
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            {/* <Avatar alt={name} src={avatarUrl} /> */}
-                            {/* <Typography variant="subtitle2" noWrap>
-                              {"ss"}
-                            </Typography> */}
+                            <Avatar alt={"h"} src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ0N1-Kpw5hA-sU7K--v-vfL8z5y9knIR0UA&usqp=CAU"} />
                           </Stack>
                         </TableCell>
 
@@ -228,15 +226,23 @@ export default function UserPage() {
 
 
                         <TableCell align="left">
-                        <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+                        <Button variant="contained" size='small' startIcon={<Iconify icon="eva:plus-fill" />}>
                           Imprimer
                         </Button>
                         </TableCell>
 
-                        <TableCell align="right">
-                          <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
-                            <Iconify icon={'eva:more-vertical-fill'} />
-                          </IconButton>
+                        <TableCell align="left">
+                          <Link to={`/dashboard/updatepayment/${_id}`}>
+                            <Button variant="contained" >
+                              <Iconify icon={'eva:edit-fill'}  />
+                            </Button>
+                          </Link>
+                        </TableCell>
+
+                        <TableCell align="left">
+                          <Button variant="contained" color='error'>
+                            <Iconify icon={'eva:trash-2-outline'}  />
+                          </Button>
                         </TableCell>
                       </TableRow>
                     );
@@ -286,35 +292,6 @@ export default function UserPage() {
           />
         </Card>
       </Container>
-
-      <Popover
-        open={Boolean(open)}
-        anchorEl={open}
-        onClose={handleCloseMenu}
-        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        PaperProps={{
-          sx: {
-            p: 1,
-            width: 140,
-            '& .MuiMenuItem-root': {
-              px: 1,
-              typography: 'body2',
-              borderRadius: 0.75,
-            },
-          },
-        }}
-      >
-        <MenuItem>
-          <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
-          Edit
-        </MenuItem>
-
-        <MenuItem sx={{ color: 'error.main' }}>
-          <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 2 }} />
-          Delete
-        </MenuItem>
-      </Popover>
     </>
   );
 }

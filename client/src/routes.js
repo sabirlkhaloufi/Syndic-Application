@@ -39,7 +39,7 @@ export default function Router() {
 
         { path: 'payments', element: <PaymentPage />},
         { path: 'addPayment', element: <AddPayment />},
-        { path: 'updatePayment', element: <UpdatePayment />},
+        { path: 'updatePayment/:id', element: <UpdatePayment />},
       ],
     },
     

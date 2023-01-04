@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 // @mui
 import React from 'react';
-import { Box, Card, Link, Typography, Stack, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { Box, Card, Typography, Stack, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import axios from 'axios';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -50,18 +51,16 @@ export default function ShopProductCard({ appartement, getappatements }) {
       </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
-        <Link color="inherit" underline="hover">
           <Typography variant="subtitle2" noWrap>
             {Numero}
           </Typography>
-        </Link>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           <Button variant="contained" size='small' color="error" onClick={()=>{deleteAppartement(_id)}} sx={{ mr: 1 }}>
           <DeleteIcon />
           </Button>
 
-          <Link href={`updateAppartement/${_id}`}>
+          <Link to={`/dashboard/updateappartement/${_id}`}>
           <Button variant="contained" size='small' color="primary">
           <EditIcon />
           </Button>
