@@ -1,7 +1,11 @@
 import { Helmet } from 'react-helmet-async';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'react-circular-progressbar/dist/styles.css';
+import { saveAs } from 'file-saver';
+import FileDownload from 'js-file-download';
+import QRCode from 'react-qr-code';
+
 
 
 // @mui
@@ -13,6 +17,10 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import PDFFile from '../../utils/PDFFile'
+
 import api from '../../utils/api';
 import Iconify from '../../components/iconify';
 
@@ -22,6 +30,8 @@ import { ProductCartWidget} from '../../sections/@dashboard/products';
 import SelectLabels from './SelectLabels';
 
 
+
+
 // ----------------------------------------------------------------------
 
 export default function AddPayment() {
@@ -29,6 +39,7 @@ export default function AddPayment() {
 const [formData, setFormData] = useState({})
 const [error, setError] = useState("")
 
+const [download, setDownload] = useState(false)
 
 
 const [value, setValue] = React.useState(dayjs('2014-08-18'));
@@ -47,17 +58,33 @@ const onChange = (e)=>{
 }
 
 const AddPayment = async () => {
+      // formData.Date = value.$d;
       console.log(formData);
-      formData.Date = value.$d;
       await api.post('payment/add', formData).then((Response)=>{
         console.log(Response);
+        // getP:df(Response.data._id)
         setError("")
+        setDownload(true);
         // Navigate("/dashboard/payments")
       }).catch((Error)=>{
         console.log(Error.response.data.message);
         setError(Error.response.data.message)
       })
   
+}
+
+
+
+
+const getPdf = async(id)=>{
+  api.get(`payment/getpdf/${id}`, { responseType: 'blob' }).then((res) => {
+        console.log(res.data);
+        FileDownload(res.data,"facturehh.pdf")
+        // const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+        // saveAs(pdfBlob, 'FACTURE.pdf');
+      }).catch((Error)=>{
+        console.log(Error);
+      })
 }
 
   return (
@@ -72,7 +99,6 @@ const AddPayment = async () => {
       <Typography variant="h4" sx={{ mb: 5 }}>
       AddPayment
         </Typography>
-
       </Stack>
 
       <form className='mx-4'>
@@ -85,24 +111,30 @@ const AddPayment = async () => {
           <TextField id="outlined-basic"  type='number'  name='Prix' label="Prix" onChange={onChange} variant="outlined" sx={{ width: "100%"}}/>
         </div>
         <div className="mb-3">
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Stack spacing={3}>
-        <DesktopDatePicker
-          label="Date"
-          inputFormat="YYYY/DD/MM"
-          value={value}
-          onChange={handleChange}
-          renderInput={(params) => <TextField {...params} />}
-        />
-      </Stack>
-    </LocalizationProvider>
+          <div>
+            {/* <label htmlFor="exampleInputEmail1" className="form-label">Email address</label> */}
+            <input type="date" name='Date' onChange={onChange} className="form-control" aria-describedby="emailHelp" />
+          </div>
+
         </div>
+
+        
+        
         
 
         <Button sx={{ width: "100%" }} size="medium" onClick={AddPayment} variant="contained" startIcon={<Iconify icon="eva:plus-fill"  />}>
             Add
           </Button>
       </form>
+
+      <div className="App">
+
+      
+      { download && <PDFDownloadLink  document={<PDFFile payment={formData}/>} filename="FORM">
+          {({loading}) => (loading ? <button>Loading Document...</button> : <button>Download</button> )}
+          </PDFDownloadLink> }
+
+        </div>
         <ProductCartWidget />
       </Container>
     </>

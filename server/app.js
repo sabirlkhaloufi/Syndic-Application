@@ -1,9 +1,14 @@
 require("dotenv").config()
 const express = require("express")
 const path = require('path');
+const bodyParser = require('body-parser')
+
+const pdf = require('html-pdf');
 
 const app = express()
 const cors = require('cors');
+app.use(bodyParser.json());
+
 
 //error handller middlware
 const {errorHandler} = require("./Middlewares/ErrorHandling")

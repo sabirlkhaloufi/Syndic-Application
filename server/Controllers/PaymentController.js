@@ -1,6 +1,8 @@
 require("dotenv").config()
 const Payment = require("../Models/Payment")
 const asyncHandler = require('express-async-handler');
+const generatePdf = require('../Utils/generatePdf')
+
 
 
 // method  : get
@@ -66,6 +68,10 @@ const addPayment = asyncHandler(async(req,res) => {
                 Prix,
                 Date
             });
+            
+            // generatePdf(payment,res);
+
+            console.log(Date);
             res.send({message:"add success"})
         } catch(error){
             res.status(400)
@@ -114,5 +120,12 @@ const deletePayment = asyncHandler(async(req,res) => {
 })
 
 
+const getPdf = (req, res)=>{
+    const {id} = req.params
+    res.download("uploads/result.pdf")
+    // res.sendFile("uploads/result.pdf");
+    // res.sendFile(`/uploads/facture${id}.pdf`)
+}
 
-module.exports = {getAllPayment, getOnePayment, addPayment, updatePayment, deletePayment}
+
+module.exports = {getAllPayment, getOnePayment, addPayment, updatePayment, deletePayment, getPdf}

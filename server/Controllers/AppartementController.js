@@ -2,7 +2,6 @@ require("dotenv").config()
 const Appartement = require("../Models/Appartement")
 const asyncHandler = require('express-async-handler');
 
-
 // method  : get
 // url     : api/Appartement/getAll
 // acces   : Puplic
@@ -48,7 +47,8 @@ const addAppartement = asyncHandler(async(req,res) => {
                     Numero,
                     Etage
                 });
-                res.send({message:"add success"})
+
+                // res.send({message:"add success"})
             
             
             
