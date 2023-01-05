@@ -69,10 +69,9 @@ const addPayment = asyncHandler(async(req,res) => {
                 Date
             });
             
-            // generatePdf(payment,res);
+            generatePdf(payment,res);
+            res.send(payment)
 
-            console.log(Date);
-            res.send({message:"add success"})
         } catch(error){
             res.status(400)
             throw new Error(error)
@@ -120,9 +119,15 @@ const deletePayment = asyncHandler(async(req,res) => {
 })
 
 
+
+// method  : delete
+// url     : api/Payment/getpdf/:id
+// acces   : private
 const getPdf = (req, res)=>{
     const {id} = req.params
-    res.download("uploads/result.pdf")
+    console.log(id);
+    // console.log(`${__dirname}/uploads/result.pdf`);
+    res.download(`${__dirname}/pdf/facture${id}.pdf`)
     // res.sendFile("uploads/result.pdf");
     // res.sendFile(`/uploads/facture${id}.pdf`)
 }

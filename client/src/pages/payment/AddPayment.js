@@ -2,14 +2,13 @@ import { Helmet } from 'react-helmet-async';
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'react-circular-progressbar/dist/styles.css';
-import { saveAs } from 'file-saver';
 import FileDownload from 'js-file-download';
 import QRCode from 'react-qr-code';
 
 
 
 // @mui
-import { Container, Stack,TextField,Alert, Typography, Button, FormControl, InputLabel, Input, FormHelperText} from '@mui/material';
+import { Container, Stack,TextField,Alert, Typography, Button} from '@mui/material';
 import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -18,8 +17,6 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import PDFFile from '../../utils/PDFFile'
 
 import api from '../../utils/api';
 import Iconify from '../../components/iconify';
@@ -58,13 +55,15 @@ const onChange = (e)=>{
 }
 
 const AddPayment = async () => {
-      // formData.Date = value.$d;
       console.log(formData);
       await api.post('payment/add', formData).then((Response)=>{
-        console.log(Response);
-        // getP:df(Response.data._id)
+        console.log(Response.data._id);
+
+        setTimeout(() => {
+          getPdf(Response.data._id)
+        }, 3000);
+        
         setError("")
-        setDownload(true);
         // Navigate("/dashboard/payments")
       }).catch((Error)=>{
         console.log(Error.response.data.message);
@@ -79,9 +78,7 @@ const AddPayment = async () => {
 const getPdf = async(id)=>{
   api.get(`payment/getpdf/${id}`, { responseType: 'blob' }).then((res) => {
         console.log(res.data);
-        FileDownload(res.data,"facturehh.pdf")
-        // const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
-        // saveAs(pdfBlob, 'FACTURE.pdf');
+        FileDownload(res.data,"facture.pdf")
       }).catch((Error)=>{
         console.log(Error);
       })
@@ -117,24 +114,10 @@ const getPdf = async(id)=>{
           </div>
 
         </div>
-
-        
-        
-        
-
         <Button sx={{ width: "100%" }} size="medium" onClick={AddPayment} variant="contained" startIcon={<Iconify icon="eva:plus-fill"  />}>
             Add
           </Button>
       </form>
-
-      <div className="App">
-
-      
-      { download && <PDFDownloadLink  document={<PDFFile payment={formData}/>} filename="FORM">
-          {({loading}) => (loading ? <button>Loading Document...</button> : <button>Download</button> )}
-          </PDFDownloadLink> }
-
-        </div>
         <ProductCartWidget />
       </Container>
     </>

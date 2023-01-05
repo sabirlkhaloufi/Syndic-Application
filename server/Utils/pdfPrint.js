@@ -1,4 +1,4 @@
-module.exports = ({ Apparetement, Prix}) => {
+module.exports = ({Apparetement, Prix}) => {
     const today = new Date();
 return `
     <!doctype html>
@@ -7,9 +7,13 @@ return `
           <meta charset="utf-8">
           <title>PDF Result Template</title>
           <style>
+
              .invoice-box {
-             max-width: 800px;
+             max-width: 1000px;
              margin: auto;
+             display:flex;
+             justify-content:center;
+             align-items:center;
              padding: 30px;
              border: 1px solid #eee;
              box-shadow: 0 0 10px rgba(0, 0, 0, .15);

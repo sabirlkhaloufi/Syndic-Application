@@ -8,6 +8,6 @@ router.post('/add',addPayment)
 router.put('/update/:id',updatePayment)
 router.delete('/delete/:id',deletePayment)
 
-router.get("getPdf/:id",getPdf)
+router.get("/getPdf/:id",getPdf)
 
 module.exports = router

@@ -41,11 +41,13 @@ const Appartement = require("./Routes/AppartementRoute")
 const Payment = require("./Routes/PaymentRoute")
 
 
-app.use(express.json())
 
+app.use("/api/payment",Payment)
 app.use("/api/auth",AuthRoute)
 app.use("/api/appartement",Appartement)
-app.use("/api/payment",Payment)
+
+app.use(express.json())
+
 
 app.use('*',routeError)
 
