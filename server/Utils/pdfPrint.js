@@ -1,4 +1,4 @@
-module.exports = ({Apparetement, Prix}) => {
+module.exports = (data) => {
     const today = new Date();
 return `
     <!doctype html>
@@ -10,14 +10,13 @@ return `
 
              .invoice-box {
              max-width: 1000px;
-             margin: auto;
-             display:flex;
-             justify-content:center;
-             align-items:center;
+             margin-top: 250px;
+             margin-left:40px;
+             height:900px;
              padding: 30px;
              border: 1px solid #eee;
              box-shadow: 0 0 10px rgba(0, 0, 0, .15);
-             font-size: 16px;
+             font-size: 25px;
              line-height: 24px;
              font-family: 'Helvetica Neue', 'Helvetica',
              color: #555;
@@ -32,6 +31,10 @@ return `
              width: 100%;
              line-height: inherit;
              text-align: left;
+             }
+
+             .datefacture{
+               margin-top:20px;
              }
              .invoice-box table td {
              padding: 5px;
@@ -92,8 +95,8 @@ return `
                          <tr>
                             <td class="title"><img  src="http://localhost:3001/assets/syndic.png"
                                style="width:100%; max-width:156px;"></td>
-                            <td>
-                               Datum: ${`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}.`}
+                            <td class="datefacture">
+                               Date d'imprimer la facture: ${`${today.getDate()}/ ${today.getMonth() + 1}/ ${today.getFullYear()}.`}
                             </td>
                          </tr>
                       </table>
@@ -104,26 +107,26 @@ return `
                       <table>
                          <tr>
                             <td>
-                               Customer name: ${Apparetement}
+                               Customer name: ${data.Apparetement}
                             </td>
                             <td>
-                               Receipt numbffffffffffffffffffffffffer: ${Prix}
+                               Numero de facture: ${data.Prix}
                             </td>
                          </tr>
                       </table>
                    </td>
                 </tr>
                 <tr class="heading">
-                   <td>Bought items:</td>
-                   <td>Price</td>
+                   <td>Numero d'appartement:</td>
+                   <td>${data.Apparetement}</td>
                 </tr>
                 <tr class="item">
-                   <td>First item:</td>
-                   <td>${Prix}$</td>
+                   <td>Price:</td>
+                   <td>${data.Prix}$</td>
                 </tr>
                 <tr class="item">
-                   <td>Second item:</td>
-                   <td>${Prix}$</td>
+                   <td>Date de payment:</td>
+                   <td>${data.Date}$</td>
                 </tr>
              </table>
              <br />
