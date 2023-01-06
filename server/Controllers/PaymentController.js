@@ -9,7 +9,7 @@ const generatePdf = require('../Utils/generatePdf')
 // url     : api/Payment/getAll
 // acces   : Puplic
 const getAllPayment = asyncHandler(async(req,res) => {
-    const payment  = await Payment.find()
+    const payment  = await Payment.find({}).populate({path:'Apparetement',select:'Numero -_id'});
     res.send(payment);  
 
 

@@ -27,4 +27,4 @@ const Appartement = mongoose.Schema({
   timestamps: true
 });
 
-module.exports = mongoose.model("appartements", Appartement);
+module.exports = mongoose.model("Appartement", Appartement);

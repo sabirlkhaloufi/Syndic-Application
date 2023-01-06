@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const { ObjectId } = mongoose.Schema
  
 const Payment = mongoose.Schema({
   Prix: {
@@ -7,8 +7,8 @@ const Payment = mongoose.Schema({
     required: true,
   },
   Apparetement: {
-    type:mongoose.Schema.Types.ObjectId,
-    ref:'appartements',
+    type:ObjectId,
+    ref:'Appartement',
     require: true
   },
   Date: {
@@ -19,4 +19,4 @@ const Payment = mongoose.Schema({
   timestamps: true
 });
 
-module.exports = mongoose.model("Payments", Payment);
+module.exports = mongoose.model("Payment", Payment);
