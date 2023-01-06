@@ -32,8 +32,8 @@ const getOneAppartement = asyncHandler(async(req,res) => {
 // acces   : private
 
 const addAppartement = asyncHandler(async(req,res) => {
-    const {Numero, Etage} = req.body
-    if(!Numero || !Etage){
+    const {Numero, Etage, NameClient, CnClient} = req.body
+    if(!Numero || !Etage || !NameClient || !CnClient){
         res.status(400)
         throw new Error('please add all fields')
     }else{
@@ -41,16 +41,15 @@ const addAppartement = asyncHandler(async(req,res) => {
 
             // const getappatement = Appartement.findOne({Numero: Numero});
             // console.log(getappatement);
-
             
                 const appartement =  await Appartement.create({
                     Numero,
-                    Etage
+                    Etage,
+                    NameClient,
+                    CnClient
                 });
 
-                // res.send({message:"add success"})
-            
-            
+                res.send({message:"add success"})
             
         } catch(error){
             res.status(400)
@@ -65,15 +64,17 @@ const addAppartement = asyncHandler(async(req,res) => {
 // acces   : private
 const updateAppartement = asyncHandler(async(req,res) => {
     const {id} = req.params
-    const {Numero, Etage, } = req.body
-    if(!Numero || !Etage){
+    const {Numero, Etage, NameClient, CnClient} = req.body
+    if(!Numero || !Etage || !NameClient || !CnClient){
         res.status(400)
         throw new Error('please add all fields')
     }else{
         try{
             const appartement =  await Appartement.updateOne({_id:id},{
                 Numero,
-                Etage
+                Etage,
+                NameClient,
+                CnClient
             });
             res.send({message:"updated success"})
         } catch(error){

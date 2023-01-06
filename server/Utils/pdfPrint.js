@@ -1,5 +1,6 @@
 module.exports = (data) => {
     const today = new Date();
+    const N = Math.floor(Math.random() * 10) + 1;
 return `
     <!doctype html>
     <html>
@@ -110,7 +111,7 @@ return `
                                Customer name: ${data.Apparetement}
                             </td>
                             <td>
-                               Numero de facture: ${data.Prix}
+                               Numero de facture: ${N}
                             </td>
                          </tr>
                       </table>

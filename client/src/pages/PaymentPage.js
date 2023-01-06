@@ -3,6 +3,8 @@ import { filter } from 'lodash';
 import {Link} from 'react-router-dom'
 import { sentenceCase } from 'change-case';
 import { useState , useEffect } from 'react';
+import FileDownload from 'js-file-download';
+
 // @mui
 import {
   Card,
@@ -99,6 +101,15 @@ export default function UserPage() {
       console.log(Response.data);
       getAllAppatements();
     }).catch( (Error)=>{
+      console.log(Error);
+    })
+  }
+
+  const imprimerPdf = (id)=>{
+    api.get(`payment/getpdf/${id}`, { responseType: 'blob' }).then((res) => {
+      console.log(res.data);
+      FileDownload(res.data,"facture.pdf")
+    }).catch((Error)=>{
       console.log(Error);
     })
   }
@@ -235,7 +246,7 @@ export default function UserPage() {
 
 
                         <TableCell align="left">
-                        <Button variant="contained" size='small' startIcon={<Iconify icon="eva:plus-fill" />}>
+                        <Button onClick={()=>imprimerPdf(_id)} variant="contained" size='small' startIcon={<Iconify icon="eva:plus-fill" />}>
                           Imprimer
                         </Button>
                         </TableCell>

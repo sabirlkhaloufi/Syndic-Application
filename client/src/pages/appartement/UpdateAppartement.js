@@ -85,12 +85,18 @@ const updateAppartement = async (data, options) => {
           
           />
         </div>
-        {/* <div className="mb-3">
+        <div className="mb-3">
           <TextField id="outlined-basic" label="carte national client" name='CnClient' variant="outlined" onChange={onChange} sx={{ width: "100%" }} value={formData.CnClient}
           InputLabelProps={{
             shrink: true,
           }} />
-        </div> */}
+        </div>
+        <div className="mb-3">
+          <TextField id="outlined-basic" label="carte national client" name='NameClient' variant="outlined" onChange={onChange} sx={{ width: "100%" }} value={formData.NameClient}
+          InputLabelProps={{
+            shrink: true,
+          }} />
+        </div>
         <div className="mb-3">
           <TextField id="outlined-basic" type='number'   name='Etage' label="Numero Etage" onChange={onChange} variant="outlined" sx={{ width: "100%"}} value={formData.Etage}
           InputLabelProps={{

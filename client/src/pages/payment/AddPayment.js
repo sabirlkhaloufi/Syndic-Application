@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'react-circular-progressbar/dist/styles.css';
 import FileDownload from 'js-file-download';
-import QRCode from 'react-qr-code';
 
 
 
@@ -24,7 +23,8 @@ import Iconify from '../../components/iconify';
 
 // components
 import { ProductCartWidget} from '../../sections/@dashboard/products';
-import SelectLabels from './SelectLabels';
+import SelectLabelsAppartement from './SelectLabelsAppartement';
+import SelectLabelsCnClient from './SelectLabelsCnClient';
 
 
 
@@ -102,7 +102,10 @@ const getPdf = async(id)=>{
       {error && <Alert severity="error" sx={{ mb:2}}>{error}</Alert>}
 
       <div className="mb-3">
-          <SelectLabels handleChange={onChange}/>
+          <SelectLabelsAppartement handleChange={onChange} name={"nAppartement"}/>
+        </div>
+        <div className="mb-3">
+          <SelectLabelsCnClient handleChange={onChange} name={"CnCient"}/>
         </div>
         <div className="mb-3">
           <TextField id="outlined-basic"  type='number'  name='Prix' label="Prix" onChange={onChange} variant="outlined" sx={{ width: "100%"}}/>

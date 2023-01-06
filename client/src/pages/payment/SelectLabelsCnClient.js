@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {InputLabel, MenuItem, FormControl, Select} from '@mui/material';
 import api from '../../utils/api';
 
-export default function SelectLabels(props) {
+export default function SelectLabelsCnClient(props) {
 
-  const [appartements, setAppartements] = useState([])
+  const [CnClients, setCnCient] = useState([])
 
   const [age, setAge] = React.useState('');
   const handleChange = (event) => {
@@ -16,7 +16,7 @@ export default function SelectLabels(props) {
   const getAllAppatements = async()=>{
     api.get("appartement/getall").then((Response)=>{
       console.log(Response);
-      setAppartements(Response.data)
+      setCnCient(Response.data)
     }).catch((Error)=>{
       console.log(Error);
     })
@@ -34,14 +34,14 @@ export default function SelectLabels(props) {
           id="demo-simple-select-helper"
           value={age}
           label="Apparetement"
-          name='Apparetement'
+          name='CnClient'
           variant='outlined'
           onChange={(e) => { props.handleChange(e); handleChange(e); }}
         >
 
-          {appartements.map((item)=>{
+          {CnClients.map((item)=>{
             return(
-              <MenuItem value={item._id}>{item.Numero}</MenuItem>
+              <MenuItem value={item.CnClient}>{item.CnClient}</MenuItem>
             )
           })}
         </Select>

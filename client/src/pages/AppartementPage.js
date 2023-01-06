@@ -27,6 +27,7 @@ export default function AppartementPage() {
       console.log(Error);
     })
   }
+  
   useEffect(() => {
     getAllAppatements();
   }, [])

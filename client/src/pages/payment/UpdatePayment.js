@@ -21,7 +21,7 @@ import Iconify from '../../components/iconify';
 import { ProductSort, ProductList, ProductCartWidget} from '../../sections/@dashboard/products';
 import api from '../../utils/api';
 
-import SelectLabels from './SelectLabels';
+import SelectLabels from './SelectLabelsAppartement';
 
 // ----------------------------------------------------------------------
 
