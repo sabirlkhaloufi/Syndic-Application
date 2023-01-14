@@ -5,6 +5,8 @@ import {useCookies} from 'react-cookie'
 // @mui
 import { styled } from '@mui/material/styles';
 //
+import { useSelector } from 'react-redux';
+
 import Header from './header';
 import ProtectedRoute from '../../utils/ProtectedRoute'
 import Nav from './nav';
@@ -40,6 +42,10 @@ export default function DashboardLayout() {
   const [open, setOpen] = useState(false);
   const [cookie] = useCookies();
   const token = cookie.token;
+
+
+  const isLogged = useSelector( state => state.auth.isLogged)
+  console.log(isLogged);
 
  
     return(

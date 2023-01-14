@@ -1,5 +1,6 @@
 require("dotenv").config()
 const Payment = require("../Models/Payment")
+const ApparetementModel = require("../Models/Appartement")
 const asyncHandler = require('express-async-handler');
 const generatePdf = require('../Utils/generatePdf')
 
@@ -11,28 +12,6 @@ const generatePdf = require('../Utils/generatePdf')
 const getAllPayment = asyncHandler(async(req,res) => {
     const payment  = await Payment.find({}).populate({path:'Apparetement',select:'Numero -_id'});
     res.send(payment);  
-
-
-    // userCollection.aggregate([{
-    //     $group: resources
-    // }, {
-    //     $lookup: {
-    //         from: "Comments", // collection to join
-    //         localField: "_id",//field from the input documents
-    //         foreignField: "user_id",//field from the documents of the "from" collection
-    //         as: "comments"// output array field
-    //     }
-    // }, {
-    //     $lookup: {
-    //         from: "Post", // from collection name
-    //         localField: "_id",
-    //         foreignField: "user_id",
-    //         as: "posts"
-    //     }
-    // }],function (error, data) {
-    //  return res.json(data);
- //handle error case also
-// });
 
 })
 
@@ -63,12 +42,15 @@ const addPayment = asyncHandler(async(req,res) => {
         throw new Error('please add all fields')
     }else{
         try{
-            const payment =  await Payment.create({
+            let payment =  await Payment.create({
                 Apparetement,
                 Prix,
                 Date
             });
-            
+
+            const NumeroAppartement = await ApparetementModel.findOne({ _id:payment.Apparetement})
+            payment.Apparetement = NumeroAppartement;
+            console.log(payment);
             generatePdf(payment,res);
             res.send(payment)
 

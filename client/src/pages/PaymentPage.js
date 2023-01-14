@@ -116,7 +116,7 @@ export default function UserPage() {
 
   const getAllAppatements = async()=>{
     api.get("payment/getall").then((Response)=>{
-      console.log(Response);
+      console.log(Response.data);
       setPayments(Response.data)
     }).catch((Error)=>{
       console.log(Error);
@@ -126,14 +126,6 @@ export default function UserPage() {
     getAllAppatements();
   }, [])
 
-
-  const handleOpenMenu = (event) => {
-    setOpen(event.currentTarget);
-  };
-
-  const handleCloseMenu = () => {
-    setOpen(null);
-  };
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -237,7 +229,7 @@ export default function UserPage() {
                           </Stack>
                         </TableCell>
 
-                        <TableCell align="left">{Apparetement}</TableCell>
+                        <TableCell align="left">{Apparetement.Numero}</TableCell>
 
                         <TableCell align="left">{`${Prix}  DH`}</TableCell>
 

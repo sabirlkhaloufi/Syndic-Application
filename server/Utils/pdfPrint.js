@@ -25,6 +25,10 @@ return `
              .margin-top {
              margin-top: 50px;
              }
+
+             .mt-3{
+               margin-top: 70px !important;
+             }
              .justify-center {
              text-align: center;
              }
@@ -94,7 +98,7 @@ return `
                    <td colspan="2">
                       <table>
                          <tr>
-                            <td class="title"><img  src="http://localhost:3001/assets/syndic.png"
+                            <td class="title"><img  src="http://localhost:3000/assets/syndic.png"
                                style="width:100%; max-width:156px;"></td>
                             <td class="datefacture">
                                Date d'imprimer la facture: ${`${today.getDate()}/ ${today.getMonth() + 1}/ ${today.getFullYear()}.`}
@@ -108,7 +112,7 @@ return `
                       <table>
                          <tr>
                             <td>
-                               Customer name: ${data.Apparetement}
+                               CN de client: ${data.Apparetement.CnClient}
                             </td>
                             <td>
                                Numero de facture: ${N}
@@ -117,15 +121,15 @@ return `
                       </table>
                    </td>
                 </tr>
-                <tr class="heading">
+                <tr class="heading mt-3">
                    <td>Numero d'appartement:</td>
-                   <td>${data.Apparetement}</td>
+                   <td>${data.Apparetement.Numero}</td>
                 </tr>
-                <tr class="item">
+                <tr class="item mt-3">
                    <td>Price:</td>
-                   <td>${data.Prix}$</td>
+                   <td>${data.Prix} DH</td>
                 </tr>
-                <tr class="item">
+                <tr class="item mt-3">
                    <td>Date de payment:</td>
                    <td>${data.Date}$</td>
                 </tr>
