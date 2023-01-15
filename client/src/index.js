@@ -10,18 +10,22 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import reportWebVitals from './reportWebVitals';
 
+import  UserProvider  from './utils/UserProvider';
+
+
 // ----------------------------------------------------------------------
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <Provider store={store}>
-  <HelmetProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </HelmetProvider>
-  </Provider>
+  <UserProvider>
+    <HelmetProvider>
+      <BrowserRouter>
+          <App />
+      </BrowserRouter>
+    </HelmetProvider>
+  </UserProvider>
+
 );
 
 // If you want to enable client cache, register instead.

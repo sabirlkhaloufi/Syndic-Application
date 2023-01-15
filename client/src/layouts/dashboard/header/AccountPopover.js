@@ -1,21 +1,24 @@
-import { useState } from 'react';
+import { useState, useContext  } from 'react';
 // @mui
 import { useNavigate } from 'react-router-dom';
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
-import { useSelector } from 'react-redux';
 // mocks_
 import account from '../../../_mock/account';
 import api from '../../../utils/api';
+import {UserContext} from '../../../utils/UserProvider'
 
 
 
 export default function AccountPopover() {
 
-  const isLogged = useSelector(state => state.auth.isLogged)
+
+  const {user}  = useContext(UserContext);
+
+  console.log(user);
+
   const Naviagate = useNavigate();
 
-  const [user, SetUser] = useState({})
   const [open, setOpen] = useState(null);
 
   
@@ -27,6 +30,8 @@ export default function AccountPopover() {
   const handleClose = () => {
     setOpen(null);
   };
+
+
 
 
   const Logout = () => {
@@ -82,10 +87,10 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-            {account.displayName}
+            {user.username}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {account.email}
+          {user.username}
           </Typography>
         </Box>
 

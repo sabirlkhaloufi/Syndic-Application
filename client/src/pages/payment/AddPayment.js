@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import React, { useState, useEffect, useRef } from 'react';
+import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'react-circular-progressbar/dist/styles.css';
 import FileDownload from 'js-file-download';
@@ -8,17 +8,10 @@ import FileDownload from 'js-file-download';
 // @mui
 import { Container, Stack,TextField,Alert, Typography, Button} from '@mui/material';
 import dayjs from 'dayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 
 
 import api from '../../utils/api';
 import Iconify from '../../components/iconify';
-
 
 // components
 import { ProductCartWidget} from '../../sections/@dashboard/products';
@@ -34,8 +27,6 @@ export default function AddPayment() {
  
 const [formData, setFormData] = useState({})
 const [error, setError] = useState("")
-
-const [download, setDownload] = useState(false)
 
 
 const [value, setValue] = React.useState(dayjs('2014-08-18'));
@@ -63,7 +54,7 @@ const AddPayment = async () => {
         }, 3000);
         
         setError("")
-        // Navigate("/dashboard/payments")
+        Navigate("/dashboard/payments")
       }).catch((Error)=>{
         console.log(Error.response.data.message);
         setError(Error.response.data.message)

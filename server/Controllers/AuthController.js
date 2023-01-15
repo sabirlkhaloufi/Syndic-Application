@@ -21,7 +21,7 @@ const Login =  asyncHandler(async(req,res) => {
     if(user && (await bcrypt.compare(req.body.password,user.password))){
         
         //generate token => id , => role
-        const token = generateToken(user._id)
+        const token = generateToken(user)
 
         res.cookie("token",token); 
         res.status(200).json({

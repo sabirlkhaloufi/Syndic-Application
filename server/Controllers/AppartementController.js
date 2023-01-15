@@ -99,5 +99,22 @@ const deleteAppartement = asyncHandler(async(req,res) => {
 })
 
 
+// method  : get
+// url     : api/Appartement/count
+// acces   : private
+const CountAppartement = asyncHandler(async(req,res) => {
+    try{
+        const appartement =  await Appartement.countDocuments();
+        res.send(appartement)
+    } catch(error){
+        res.status(400)
+        throw new Error(error)
+    }
+})
 
-module.exports = {getAllAppartement, updateAppartement, deleteAppartement, addAppartement, getOneAppartement}
+
+
+
+
+
+module.exports = {getAllAppartement, updateAppartement, deleteAppartement, addAppartement, getOneAppartement, CountAppartement}

@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import React, { useState, useEffect } from 'react';
 import { Navigate, useParams, useNavigate } from 'react-router-dom';
-import {CircularProgressbar, buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 
@@ -10,10 +9,7 @@ import { Container, Stack,TextField, Typography, Modal, Box, Button, FormControl
 import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import Iconify from '../../components/iconify';
 
 
@@ -21,8 +17,8 @@ import Iconify from '../../components/iconify';
 import { ProductSort, ProductList, ProductCartWidget} from '../../sections/@dashboard/products';
 import api from '../../utils/api';
 
-import SelectLabels from './SelectLabelsAppartement';
-
+import SelectLabelsAppartement from './SelectLabelsAppartement';
+import SelectLabelsCnClient from './SelectLabelsCnClient';
 // ----------------------------------------------------------------------
 
 export default function UpdatePayment() {
@@ -85,7 +81,7 @@ const UpdatePayment = async () => {
 
       <Stack direction="row" alignItems="center" justifyContent="space-between" flexShrink={0} sx={{ mx: 2  }}>
       <Typography variant="h4" sx={{ mb: 5 }}>
-          Update Appartement
+          UpdatePayment
         </Typography>
 
       </Stack>
@@ -94,8 +90,13 @@ const UpdatePayment = async () => {
       {error && <Alert severity="error" sx={{ mb:2}}>{error}</Alert>}
 
       <div className="mb-3">
-          <SelectLabels handleChange={onChange} value={formData.Apparetement}/>
+          <SelectLabelsAppartement handleChange={onChange} name={"nAppartement"}/>
         </div>
+
+        <div className="mb-3">
+          <SelectLabelsCnClient handleChange={onChange} name={"CnCient"}/>
+        </div>
+
         <div className="mb-3">
           <TextField id="outlined-basic" type='number' value={formData.Prix}   name='Prix' label="Prix" onChange={onChange} variant="outlined" sx={{ width: "100%"}}
           InputLabelProps={{

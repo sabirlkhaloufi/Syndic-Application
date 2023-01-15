@@ -16,7 +16,6 @@ import AddPayment from './pages/payment/AddPayment'
 import UpdatePayment from './pages/payment/UpdatePayment'
 
 
-import UserPage from './pages/UserPage';
 import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
 import DashboardAppPage from './pages/DashboardAppPage';
@@ -32,7 +31,6 @@ export default function Router() {
       children: [
         { element: <Navigate to="/" />, index: true },
         { path: 'app', element: <DashboardAppPage /> },
-        { path: 'user', element: <UserPage /> },
         { path: 'appartements', element: <AppartementPage />},
         { path: 'addAppartement', element: <AddAppartement />},
         { path: 'updateAppartement/:id', element: <UpdateAppartement />},
@@ -47,6 +45,7 @@ export default function Router() {
       path: 'login',
       element: <LoginPage />,
     },
+
     {
       element: <SimpleLayout />,
       children: [

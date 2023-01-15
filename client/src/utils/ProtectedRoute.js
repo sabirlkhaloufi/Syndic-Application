@@ -4,8 +4,6 @@ import { Navigate, Outlet } from 'react-router-dom'
 function ProtectedRoute(){
   const [cookie] = useCookies();
   const token = cookie.token;
-
-  console.log(token);
   return(
     <div>
       {token ? <Outlet/> : <Navigate to="/login"/>}

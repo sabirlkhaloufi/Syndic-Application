@@ -62,24 +62,6 @@ export default function AppartementPage() {
         <Link to={`/dashboard/addAppartement`}>
           <Button onClick={handleOpen} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>ADD appartement</Button> 
         </Link>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Text in a modal
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <TextField sx={{ width: '10%' }} id="outlined-basic" label="Outlined" variant="Title"  />
-            <TextField id="outlined-basic" label="Outlined" variant="Description" />
-            <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-            <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-            </Typography>
-          </Box>
-        </Modal>   
       </Stack>
 
 

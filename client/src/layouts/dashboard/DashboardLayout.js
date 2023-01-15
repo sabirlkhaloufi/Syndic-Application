@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import {useCookies} from 'react-cookie'
 
 // @mui
 import { styled } from '@mui/material/styles';
 //
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 import Header from './header';
 import ProtectedRoute from '../../utils/ProtectedRoute'
@@ -40,12 +39,9 @@ const Main = styled('div')(({ theme }) => ({
 export default function DashboardLayout() {
   const Navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [cookie] = useCookies();
-  const token = cookie.token;
 
-
-  const isLogged = useSelector( state => state.auth.isLogged)
-  console.log(isLogged);
+  // const isLogged = useSelector( state => state.auth.isLogged)
+  // console.log(isLogged);
 
  
     return(
@@ -53,7 +49,7 @@ export default function DashboardLayout() {
         <Header onOpenNav={() => setOpen(true)} />
   
         <Nav openNav={open} onCloseNav={() => setOpen(false)} />
-  
+
         <Main>
         <ProtectedRoute/>
         </Main>

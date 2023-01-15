@@ -1,18 +1,17 @@
 import { Helmet } from 'react-helmet-async';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'react-circular-progressbar/dist/styles.css';
 
 
 // @mui
-import { Container, Stack,TextField,Alert, Typography, Button, FormControl, InputLabel, Input, FormHelperText} from '@mui/material';
+import { Container, Stack,TextField,Alert, Typography, Button, FormHelperText} from '@mui/material';
 import api from '../../utils/api';
 import Iconify from '../../components/iconify';
 
 
 // components
 import { ProductCartWidget} from '../../sections/@dashboard/products';
-import SelectLabels from './SelectLabels';
 
 
 // ----------------------------------------------------------------------

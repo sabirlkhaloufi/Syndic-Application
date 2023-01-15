@@ -12,7 +12,6 @@ export default function SelectLabelsCnClient(props) {
     console.log(age);
   };
 
-
   const getAllAppatements = async()=>{
     api.get("appartement/getall").then((Response)=>{
       console.log(Response);
@@ -33,7 +32,7 @@ export default function SelectLabelsCnClient(props) {
         <Select
           id="demo-simple-select-helper"
           value={age}
-          label="Apparetement"
+          label="CnClient"
           name='CnClient'
           variant='outlined'
           onChange={(e) => { props.handleChange(e); handleChange(e); }}

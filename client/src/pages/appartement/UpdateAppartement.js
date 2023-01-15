@@ -1,21 +1,18 @@
 import { Helmet } from 'react-helmet-async';
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import {CircularProgressbar, buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 
 // @mui
-import { Container, Stack,TextField, Typography, Modal, Box, Button, FormControl, InputLabel, Input, FormHelperText, Alert} from '@mui/material';
-import axios from 'axios';
+import { Container, Stack,TextField, Typography, Button, FormControl, FormHelperText, Alert} from '@mui/material';
 import Iconify from '../../components/iconify';
 
 
 // components
-import { ProductSort, ProductList, ProductCartWidget} from '../../sections/@dashboard/products';
+import {ProductCartWidget} from '../../sections/@dashboard/products';
 import api from '../../utils/api';
 
-import SelectLabels from './SelectLabels';
 
 // ----------------------------------------------------------------------
 
@@ -54,8 +51,7 @@ const updateAppartement = async (data, options) => {
         Navigate("/dashboard/appartements")
       }).catch((Error)=>{
         console.log(Error);
-      })
-  
+      }) 
 }
 
 

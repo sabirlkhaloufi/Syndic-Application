@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 // @mui
@@ -6,7 +6,10 @@ import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Alert } f
 import { LoadingButton } from '@mui/lab';
 import { spacing } from '@mui/system';
 // components
+
+
 import Iconify from '../../../components/iconify';
+import { UserContext } from '../../../utils/UserProvider';
 
 // ----------------------------------------------------------------------
 
@@ -14,6 +17,9 @@ export default function LoginForm() {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
+
+
+  const {user, setUser, getUserFromToken}  = useContext(UserContext);
 
 	const [formData, setFormData] = useState({})
   const [error, setError] = useState(false)
@@ -31,7 +37,8 @@ const handleClick = async(e) =>{
 
 	axios.post("http://localhost:4000/api/auth/login",formData,{withCredentials:true})
 	  .then( (response) => {
-      console.log(response);
+
+      getUserFromToken();
       navigate('/dashboard', { replace: true });
 	  })
 	  .catch((error) =>{
