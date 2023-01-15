@@ -115,4 +115,17 @@ const getPdf = (req, res)=>{
 }
 
 
-module.exports = {getAllPayment, getOnePayment, addPayment, updatePayment, deletePayment, getPdf}
+// method  : get
+// url     : api/payment/count
+// acces   : private
+const CountPayment = asyncHandler(async(req,res) => {
+    try{
+        const payment =  await Payment.countDocuments();
+        res.send({nbr:payment})
+    } catch(error){
+        res.status(400)
+        throw new Error(error)
+    }
+})
+
+module.exports = {getAllPayment, getOnePayment, addPayment, updatePayment, deletePayment, getPdf, CountPayment}

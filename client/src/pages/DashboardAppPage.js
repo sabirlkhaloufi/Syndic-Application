@@ -1,5 +1,5 @@
+import React, {useState, useEffect} from 'react';
 import { Helmet } from 'react-helmet-async';
-import { faker } from '@faker-js/faker';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
@@ -10,10 +10,38 @@ import {
   AppWidgetSummary,
 } from '../sections/@dashboard/app';
 
+import api from '../utils/api';
+
 // ----------------------------------------------------------------------
 
 export default function DashboardAppPage() {
   const theme = useTheme();
+
+  const [countAppartement, setCountApp] = useState(0)
+  const [countPayment, setCountPayment] = useState(0)
+
+  const getNbrAppartements = ()=>{
+    api.get("appartement/count").then((Response)=>{
+      console.log(Response);
+      setCountApp(Response.data.nbr)
+    }).catch((error)=>{
+      console.log(error);
+    })
+  }
+
+  const getNbrPayments = ()=>{
+    api.get("payment/count").then((Response)=>{
+      console.log(Response);
+      setCountPayment(Response.data.nbr)
+    }).catch((error)=>{
+      console.log(error);
+    })
+  }
+
+  useEffect(() => {
+    getNbrAppartements();
+    getNbrPayments();
+  }, [])
 
   return (
     <>
@@ -28,11 +56,11 @@ export default function DashboardAppPage() {
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Weekly Sales" total={714000} icon={'ant-design:android-filled'} />
+            <AppWidgetSummary title="Appartement" total={countAppartement} icon={'ant-design:android-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="New Users" total={1352831} color="info" icon={'ant-design:apple-filled'} />
+            <AppWidgetSummary title="payment" total={countPayment} color="info" icon={'ant-design:apple-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>

@@ -105,7 +105,7 @@ const deleteAppartement = asyncHandler(async(req,res) => {
 const CountAppartement = asyncHandler(async(req,res) => {
     try{
         const appartement =  await Appartement.countDocuments();
-        res.send(appartement)
+        res.send({nbr:appartement})
     } catch(error){
         res.status(400)
         throw new Error(error)
