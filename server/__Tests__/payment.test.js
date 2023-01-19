@@ -3,8 +3,9 @@ const app = require('../app.js')
 
 const api = "/api/payment/";
 
-//test Register Method
-//POST: /api/auth/register
+
+//test payement Method
+
 describe('payment', () => {
 
     it('add payment', async () => {
@@ -13,7 +14,8 @@ describe('payment', () => {
         .send({
           Prix: 444,  
           Date: "2022/04/23",
-          Apparetement:"63b5c8c30282f273390456b2"
+          Apparetement:"63c2cf1d21276ad69af900b6",
+          CnClient:"YY"
         })
   
       expect(res.status).toEqual(200)

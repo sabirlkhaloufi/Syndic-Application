@@ -38,8 +38,9 @@ const [value, setValue] = React.useState(dayjs('2014-08-18'));
 
 const getPayment = async()=>{
   api.get(`payment/getone/${id}`).then((Response)=>{
-    console.log(Response);
+    console.log(Response.data);
     setFormData(Response.data)
+
   }).catch((Error)=>{
     console.log(Error);
   })
@@ -47,6 +48,7 @@ const getPayment = async()=>{
 
 useEffect(() => {
   getPayment();
+  console.log(formData);
 }, [])
 
 const onChange = (e)=>{
@@ -90,11 +92,16 @@ const UpdatePayment = async () => {
       {error && <Alert severity="error" sx={{ mb:2}}>{error}</Alert>}
 
       <div className="mb-3">
-          <SelectLabelsAppartement handleChange={onChange} name={"nAppartement"}/>
+
+          <SelectLabelsAppartement handleChange={onChange} data={formData}/>
+
         </div>
 
+
         <div className="mb-3">
-          <SelectLabelsCnClient handleChange={onChange} name={"CnCient"}/>
+
+          <SelectLabelsCnClient handleChange={onChange} data={formData}/>
+
         </div>
 
         <div className="mb-3">

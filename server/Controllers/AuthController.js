@@ -1,8 +1,10 @@
 require("dotenv").config()
 const Admin = require("../Models/Admin")
-const {generateToken, generateTokenReset} = require("../Utils/generateToken");
+const {generateToken, generateTokenReset} = require("../Utils/GenerateToken");
 const asyncHandler = require('express-async-handler');
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
 
 // method : post
 // url    : api/auth/login
@@ -36,11 +38,15 @@ const Login =  asyncHandler(async(req,res) => {
 
 
 const createAdmin = async(req,res)=>{
+
      //hash password bcriptJs
-    const getAdmin = await Admin.findOne({username: process.env.NAMEADMIN})
+     const password = "sabir123";
+     const username = "sabir";
+
+    const getAdmin = await Admin.findOne({username: username})
     if (!getAdmin) {
-        const passHash = await bcrypt.hash(process.env.PASSADMIN, 10)
-        const admin = await Admin.create({username: process.env.NAMEADMIN, password:passHash})
+        const passHash = bcrypt.hash(process.env.PASSADMIN, 10)
+        const admin = await Admin.create({username: process.env.NAMEADMIN, password:password})
     }
     
 }
@@ -54,8 +60,23 @@ const Logout = async(req,res)=>{
 }
 
 
+// method  : get
+// url     : api/auth/verifyToken/:token
+// acces   : private
+const verifyToken = async(req,res)=>{
+    const {token} = req.params;
+    try {
+       const infoToken =  jwt.verify(token, process.env.JWT_SECRET)
+       res.send(infoToken)
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
+
 module.exports = {
     Login,
     Logout,
+    verifyToken,
     createAdmin
 }

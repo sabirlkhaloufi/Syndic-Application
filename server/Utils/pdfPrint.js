@@ -1,6 +1,7 @@
 module.exports = (data) => {
     const today = new Date();
     const N = Math.floor(Math.random() * 10) + 1;
+   //  data.Date = data.Date.slice(0,10)
 return `
     <!doctype html>
     <html>
@@ -131,7 +132,7 @@ return `
                 </tr>
                 <tr class="item mt-3">
                    <td>Date de payment:</td>
-                   <td>${data.Date}$</td>
+                   <td>${data.Date}</td>
                 </tr>
              </table>
              <br />

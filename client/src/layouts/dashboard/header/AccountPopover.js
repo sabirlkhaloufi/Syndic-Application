@@ -1,4 +1,4 @@
-import { useState, useContext  } from 'react';
+import { useState, useContext} from 'react';
 // @mui
 import { useNavigate } from 'react-router-dom';
 import { alpha } from '@mui/material/styles';
@@ -14,9 +14,7 @@ export default function AccountPopover() {
 
 
   const {user}  = useContext(UserContext);
-
-  console.log(user);
-
+  
   const Naviagate = useNavigate();
 
   const [open, setOpen] = useState(null);

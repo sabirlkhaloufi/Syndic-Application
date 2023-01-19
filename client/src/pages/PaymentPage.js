@@ -217,7 +217,7 @@ export default function UserPage() {
 
                         <TableCell align="left">{`${Prix}  DH`}</TableCell>
 
-                        <TableCell align="left">{Date}</TableCell>
+                        <TableCell align="left">{Date.slice(0,10)}</TableCell>
 
 
 

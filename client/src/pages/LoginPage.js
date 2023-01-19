@@ -70,7 +70,7 @@ export default function LoginPage() {
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h4" gutterBottom>
-              Sign in to My Portfolio Dashboard
+              Sign in to  Dashboard
             </Typography>
 
             <Divider sx={{ my: 3 }}>

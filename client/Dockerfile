@@ -1,12 +1,12 @@
 FROM node:16.14.2
 
-WORKDIR /dashboard
+WORKDIR /client
 
-COPY package.json ./
+COPY package.json .
 
-RUN npm install
+RUN npm install -g npm@9.3.0
 
-COPY . . 
+COPY . .
 
 EXPOSE 3001
 

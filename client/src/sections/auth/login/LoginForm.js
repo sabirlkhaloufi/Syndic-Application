@@ -19,7 +19,7 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
 
 
-  const {user, setUser, getUserFromToken}  = useContext(UserContext);
+  const {getUserFromToken}  = useContext(UserContext);
 
 	const [formData, setFormData] = useState({})
   const [error, setError] = useState(false)

@@ -10,7 +10,7 @@ const generatePdf = require('../Utils/generatePdf')
 // url     : api/Payment/getAll
 // acces   : Puplic
 const getAllPayment = asyncHandler(async(req,res) => {
-    const payment  = await Payment.find({}).populate({path:'Apparetement',select:'Numero -_id'});
+    const payment  = await Payment.find({}).populate({path:'Apparetement'});
     res.send(payment);  
 
 })
@@ -22,7 +22,7 @@ const getAllPayment = asyncHandler(async(req,res) => {
 const getOnePayment = asyncHandler(async(req,res) => {
     const {id} = req.params;
     try{
-        const payment =  await Payment.findOne({ _id:id});
+        const payment =  await Payment.findOne({ _id:id}).populate({path:'Apparetement'});
         res.send(payment)
     } catch(error){
         res.status(400)
@@ -51,6 +51,7 @@ const addPayment = asyncHandler(async(req,res) => {
             const NumeroAppartement = await ApparetementModel.findOne({ _id:payment.Apparetement})
             payment.Apparetement = NumeroAppartement;
             console.log(payment);
+
             generatePdf(payment,res);
             res.send(payment)
 

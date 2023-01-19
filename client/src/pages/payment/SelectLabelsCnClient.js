@@ -6,9 +6,9 @@ export default function SelectLabelsCnClient(props) {
 
   const [CnClients, setCnCient] = useState([])
 
-  const [age, setAge] = React.useState('');
+  const [age, setAge] = React.useState({});
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setAge({CnClient: event.target.value});
     console.log(age);
   };
 
@@ -28,10 +28,10 @@ export default function SelectLabelsCnClient(props) {
 
   return (
       <FormControl sx={{ width: "100%"}}>
-        <InputLabel id="demo-simple-select-helper-label">Apparetement</InputLabel>
+        <InputLabel id="demo-simple-select-helper-label">CnClient</InputLabel>
         <Select
           id="demo-simple-select-helper"
-          value={age}
+          value={age.CnClient}
           label="CnClient"
           name='CnClient'
           variant='outlined'

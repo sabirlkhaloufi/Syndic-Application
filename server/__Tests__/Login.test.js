@@ -6,12 +6,12 @@ const api = "/api/auth/login";
 //test Register Method
 //POST: /api/auth/register
 describe('Login', () => {
-    it('login by user alredy exist', async () => {
+    it('login by user', async () => {
       const res = await request(app)
-        .post(api)
+        .post("/api/auth/login")
         .send({
           username: "sabir",  
-          password: 'sabir123',
+          password:"sabir123",
         })
   
       expect(res.status).toEqual(200)
@@ -33,11 +33,8 @@ describe('Login', () => {
     it('send data null', async () => {
       const res = await request(app)
         .post(api)
-        .send({
-          username: "",  
-          password: '',
-        })
+        .send({})
   
       expect(res.status).toEqual(400)
     })
-  })
+})

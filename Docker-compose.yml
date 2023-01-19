@@ -8,6 +8,7 @@ services:
       - ./client/src:/client/src
     networks:
       - Syndic
+    depends-On:   
   api:
     build: ./server
     ports:
@@ -15,7 +16,7 @@ services:
     volumes:
       - ./server/src:/server/src
     networks:
-      - Syndic    
+      - Syndic     
 networks:
   Syndic:
     external: true

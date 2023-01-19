@@ -11,12 +11,15 @@ import jwtDecode from "jwt-decode";
     const getUserFromToken = ()=>{
      
         const auth = cookies;
-        const user = jwtDecode(auth.token);
-        setUser(user);
+        if(auth){
+           const user = jwtDecode(auth.token);
+            setUser(user);
+        }
+       
     }
 
     return (
-      <UserContext.Provider value={{ user, setUser, getUserFromToken }}>
+      <UserContext.Provider value={{ user, getUserFromToken }}>
         {props.children}
       </UserContext.Provider>
     );
